@@ -1,4 +1,4 @@
 package tactics;
 
-public class TraversalTactic {
+public interface TraversalTactic {
 }
