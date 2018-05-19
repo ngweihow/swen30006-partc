@@ -64,7 +64,7 @@ public class Simulation extends ApplicationAdapter implements InputProcessor {
 		drivingProperties.setProperty("Map", "lecture-preview.tmx");
 		drivingProperties.setProperty("Number_of_Rounds", "20");
 		
-		try (FileReader inStream = new FileReader("Driving.Properties")) {
+		try (FileReader inStream = new FileReader("./assets/Driving.Properties")) {
 			drivingProperties.load(inStream);
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -74,7 +74,7 @@ public class Simulation extends ApplicationAdapter implements InputProcessor {
 		
 		// int numberOfRounds = Integer.parseInt(drivingProperties.getProperty("Number_of_Rounds"));
 		String mapName = drivingProperties.getProperty("Map");
-		map = new TmxMapLoader().load(mapName);
+		map = new TmxMapLoader().load("./assets/" + mapName);
 		
 		String controllerName = drivingProperties.getProperty("Controller");
 		

@@ -51,7 +51,7 @@ public class World {
 		MAP_WIDTH = roadLayer.getWidth();
 		int key = initializeMap(map);
 		
-		car = new Car(new Sprite(new Texture("sprites/car2.png")));
+		car = new Car(new Sprite(new Texture("./assets/sprites/car2.png")));
 		car.setKey(key); // Set the car key to the key that will unlock the key with the highest number
 		// Set car size relative to the map scaling.
 		car.setSize(car.getWidth()*(1f/MAP_PIXEL_SIZE), car.getHeight()*(1f/MAP_PIXEL_SIZE));
