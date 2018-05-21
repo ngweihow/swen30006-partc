@@ -4,7 +4,7 @@ import tiles.MapTile;
 import utilities.Coordinate;
 import world.Car;
 import controller.AIController;
-import mycontroller.storage.*;
+
 
 import java.util.HashMap;
 
@@ -12,13 +12,13 @@ public class MyAIController extends AIController{
     private Integer keys=0;
     private float health=100;
     private Car currentCar;
-    private storage storage_tube;
+
 
 
     public MyAIController(Car car) {
         super(car);
         setCurrentCar(car);
-        this.storage_tube=new storageTube();
+
 
     }
 

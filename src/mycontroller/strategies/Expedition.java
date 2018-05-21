@@ -9,7 +9,7 @@ import java.util.HashMap;
 
 public class Expedition implements TraversalStrategy {
 
-    @Override
+
     public Boolean stratagicBehaviour(HashMap<Coordinate, MapTile> currentView, Coordinate coordinate, float health) {
         AvoidLava lava=new AvoidLava();
         if(lava.tacticalBehaviour(currentView,coordinate)) {

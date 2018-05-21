@@ -8,7 +8,7 @@ import java.util.HashMap;
 
 public class AvoidLava implements TraversalTactic {
 
-    @Override
+
     public boolean tacticalBehaviour(HashMap<Coordinate, MapTile> currentView,Coordinate coordinate) {
 
         MapTile tile=currentView.get(new Coordinate(coordinate.x, coordinate.y));
