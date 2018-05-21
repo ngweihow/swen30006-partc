@@ -1,17 +1,17 @@
 package mycontroller.strategies;
 
-import mycontroller.tactics.avoidLava;
+import mycontroller.tactics.AvoidLava;
 import tiles.MapTile;
 import utilities.Coordinate;
 
 import java.util.HashMap;
 
 
-public class explore implements TraversalStrategy {
+public class Expedition implements TraversalStrategy {
 
     @Override
     public Boolean stratagicBehaviour(HashMap<Coordinate, MapTile> currentView, Coordinate coordinate, float health) {
-        avoidLava lava=new avoidLava();
+        AvoidLava lava=new AvoidLava();
         if(lava.tacticalBehaviour(currentView,coordinate)) {
             return false;
         }
