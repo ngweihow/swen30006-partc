@@ -1,18 +1,63 @@
 package mycontroller;
 
 import controller.CarController;
+import tiles.MapTile;
+import utilities.Coordinate;
 import world.Car;
+import controller.AIController;
+import world.WorldSpatial;
+import storage.*;
 
-public class MyAIController extends CarController{
+import java.util.HashMap;
 
-	public MyAIController(Car car) {
-		super(car);
-	}
+public class MyAIController extends AIController{
+    private Integer keys=0;
+    private float health=100;
+    private Car currentCar;
+    private storage storage_tube;
 
-	@Override
-	public void update(float delta) {
-		// TODO Auto-generated method stub
-		
-	}
+
+    public MyAIController(Car car) {
+        super(car);
+        setCurrentCar(car);
+        this.storage_tube=new storageTube();
+
+    }
+
+    @Override
+    public void update(float delta) {
+
+        // Gets what the car can see
+        HashMap<Coordinate, MapTile> currentView = getView();
+
+
+
+
+
+
+
+
+
+
+
+
+    }
+
+    public Integer getKeys() {
+        return keys;
+    }
+
+    public void setKeys(Integer keys) {
+        this.keys = keys;
+    }
+
+
+    public Car getCurrentCar() {
+        return currentCar;
+    }
+
+    public void setCurrentCar(Car currentCar) {
+        this.currentCar = currentCar;
+    }
 
 }
