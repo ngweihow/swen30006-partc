@@ -1,4 +1,4 @@
-package tactics;
+package mycontroller.tactics;
 
 public interface TraversalTactic {
 }

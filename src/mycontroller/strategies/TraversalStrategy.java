@@ -1,4 +1,4 @@
-package strategies;
+package mycontroller.strategies;
 
 public interface TraversalStrategy {
 
