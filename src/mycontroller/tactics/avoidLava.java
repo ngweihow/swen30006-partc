@@ -1,6 +1,5 @@
-package tactics;
+package mycontroller.tactics;
 
-import tiles.LavaTrap;
 import tiles.MapTile;
 import tiles.TrapTile;
 import utilities.Coordinate;

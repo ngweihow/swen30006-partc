@@ -1,4 +1,4 @@
-package strategies;
+package mycontroller.strategies;
 
 import tiles.MapTile;
 import utilities.Coordinate;

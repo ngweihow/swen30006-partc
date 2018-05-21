@@ -1,4 +1,4 @@
-package storage;
+package mycontroller.storage;
 
 import tiles.MapTile;
 import utilities.Coordinate;

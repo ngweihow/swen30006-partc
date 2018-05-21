@@ -1,10 +1,7 @@
-package storage;
+package mycontroller.storage;
 
 import tiles.MapTile;
 import utilities.Coordinate;
-
-import java.util.ArrayList;
-import java.util.HashMap;
 
 public interface storage {
 

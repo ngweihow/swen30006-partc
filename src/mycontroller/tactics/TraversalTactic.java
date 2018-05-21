@@ -1,6 +1,5 @@
-package tactics;
+package mycontroller.tactics;
 
-import controller.CarController;
 import tiles.MapTile;
 import utilities.Coordinate;
 

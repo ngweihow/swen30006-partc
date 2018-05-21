@@ -1,8 +1,6 @@
-package strategies;
+package mycontroller.strategies;
 
-import strategies.TraversalStrategy;
-import tactics.TraversalTactic;
-import tactics.avoidLava;
+import mycontroller.tactics.avoidLava;
 import tiles.MapTile;
 import utilities.Coordinate;
 
