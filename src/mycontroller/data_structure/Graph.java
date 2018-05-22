@@ -54,23 +54,19 @@ public class Graph {
                 return TRAP_BAD;
 
             }
-
         }
         if (tile.isType(MapTile.Type.WALL)) {
             return WALL;
         }
-
         if (tile.isType(MapTile.Type.FINISH)) {
             return FINISH;
         }
         if (tile.isType(MapTile.Type.START)) {
             return START;
-
         }
         if (tile.isType(MapTile.Type.ROAD)) {
             return ROAD;
         }
-
         return TILE_NOT_FOUND;
     }
 }
