@@ -1,34 +1,27 @@
 package mycontroller.data_structure;
 
 import utilities.Coordinate;
-import tiles.*;
-
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.Map;
-
-
-
 
 public class Node {
 
-    private Coordinate cord;
+    private Coordinate coord;
+
     private ArrayList<Node> neighbours;
-    static final int DEFAULT_WEIGHT=10;
 
-    public Node(Coordinate cord) {
-        this.cord = cord;
+    private static final int DEFAULT_WEIGHT=10;
+    private static final int WELL_EXPLORED = 4;
 
-
-
-
+    public Node(Coordinate coord) {
+        this.coord = coord;
+        this.neighbours = new ArrayList<>();
     }
 
     public ArrayList<Node> findNearest(ArrayList<Node> nodes) {
 
 
         // Return null if there the node is already well explored
-        if (nodes.size() == 4) {
+        if (nodes.size() == WELL_EXPLORED) {
             return null;
         }
 
@@ -57,22 +50,12 @@ public class Node {
         return null;
     }
 
-
-
-
-
-
-
-
-
-
-
     public Coordinate getCord() {
-        return cord;
+        return coord;
     }
 
     public void setCord(Coordinate cord) {
-        this.cord = cord;
+        this.coord = cord;
     }
 
     public ArrayList<Node> getNeighbours() {

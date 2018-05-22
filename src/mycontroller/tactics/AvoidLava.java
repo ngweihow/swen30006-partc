@@ -6,7 +6,7 @@ import utilities.Coordinate;
 
 import java.util.HashMap;
 
-public class AvoidLava implements TraversalTactic {
+public class AvoidLava implements ITraversalTactic {
 
 
     public boolean tacticalBehaviour(HashMap<Coordinate, MapTile> currentView,Coordinate coordinate) {
