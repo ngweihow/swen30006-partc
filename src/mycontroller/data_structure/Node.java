@@ -10,8 +10,8 @@ public class Node {
     private ArrayList<Node> neighbours;
     private int weight;
 
-    private static final int DEFAULT_WEIGHT=10;
-    private static final int WELL_EXPLORED = 4;
+    public static final int DEFAULT_WEIGHT=10;
+    public static final int WELL_EXPLORED = 4;
 
     public Node(Coordinate coord,int weight) {
         this.coord = coord;
@@ -27,11 +27,11 @@ public class Node {
 
         // Check all neighbours
         for(Node neighbour: nodes) {
-            Coordinate neighbourCord = neighbour.getCord();
+            Coordinate neighbourCord = neighbour.getCoord();
 
             // Check horizontal neighbours
-            if(Math.abs(neighbourCord.x-getCord().x)==1) {
-                if(Math.abs(neighbourCord.y - getCord().y)==0){
+            if(Math.abs(neighbourCord.x-getCoord().x)==1) {
+                if(Math.abs(neighbourCord.y - getCoord().y)==0){
                     if(!neighbours.contains(neighbour)){
                         neighbours.add(neighbour);
                     }
@@ -40,8 +40,8 @@ public class Node {
             }
 
             // Check Vertical neighbours
-            if(Math.abs(neighbourCord.x-getCord().x)==0) {
-                if(Math.abs(neighbourCord.y - getCord().y)==1){
+            if(Math.abs(neighbourCord.x-getCoord().x)==0) {
+                if(Math.abs(neighbourCord.y - getCoord().y)==1){
                     if(!neighbours.contains(neighbour)){
                         neighbours.add(neighbour);
                     }
@@ -68,22 +68,6 @@ public class Node {
 
     public void setWeight(int weight) {
         this.weight = weight;
-    }
-
-    public static int getDefaultWeight() {
-        return DEFAULT_WEIGHT;
-    }
-
-    public static int getWellExplored() {
-        return WELL_EXPLORED;
-    }
-
-    public Coordinate getCord() {
-        return coord;
-    }
-
-    public void setCord(Coordinate cord) {
-        this.coord = cord;
     }
 
     public ArrayList<Node> getNeighbours() {
