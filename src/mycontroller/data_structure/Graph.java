@@ -58,7 +58,6 @@ public class Graph {
             } else if (trapTile.getTrap().equals(LAVA)) {
                 return LAVA_TRAP;
             }
-
         } else if (tile.isType(MapTile.Type.WALL)) {
             return WALL;
         } else if (tile.isType(MapTile.Type.FINISH)) {
@@ -68,7 +67,6 @@ public class Graph {
         } else if (tile.isType(MapTile.Type.ROAD)) {
             return ROAD;
         }
-
         return TILE_NOT_FOUND;
     }
 }
