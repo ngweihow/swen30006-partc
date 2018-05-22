@@ -9,7 +9,6 @@ public class Node {
 
     private ArrayList<Node> neighbours;
 
-    private static final int DEFAULT_WEIGHT=10;
     private static final int WELL_EXPLORED = 4;
 
     public Node(Coordinate coord) {
@@ -31,6 +30,9 @@ public class Node {
 
             if(neighbourCord.x-getCord().x==1) {
                 if((neighbourCord.y - getCord().y)==0){
+                    if(neighbours.contains(nodes)){
+
+                    }
 
                 }
 
