@@ -34,9 +34,16 @@ public class Coordinate {
 	public String toString(){
 		return x+","+y;
 	}
-	
-	
-	/**
+
+    public int getX() {
+        return x;
+    }
+
+    public int getY() {
+        return y;
+    }
+
+    /**
 	 * Defined in order to use it as keys in a hashmap
 	 */
 	public boolean equals(Object c){

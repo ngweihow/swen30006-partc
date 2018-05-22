@@ -5,6 +5,7 @@ import tiles.TrapTile;
 import utilities.Coordinate;
 
 import java.util.HashMap;
+import java.util.Map;
 
 public class Graph {
     private static final int WALL=10000;
@@ -22,7 +23,7 @@ public class Graph {
     private HashMap<Coordinate, MapTile> map;
 
     // Graph which contains contents of map
-    private HashMap<Node, MapTile> graph;
+    private Map<Node, MapTile> graph;
 
 
     public Graph(HashMap<Coordinate, MapTile> map) {
@@ -31,13 +32,12 @@ public class Graph {
     }
 
     // Creates a graph of map tiles
-    public HashMap<Node, MapTile> createGraph() {
-        HashMap<Node, MapTile> graph = new HashMap<>();
+    public Map<Node, MapTile> createGraph() {
+        Map<Node, MapTile> graph = new HashMap<>();
 
         // Go over the coordinate and tiles of map
         for (HashMap.Entry<Coordinate, MapTile> entry: map.entrySet()) {
-            Coordinate key = entry.getKey();
-            Node newNode = new Node(key, weight(map.get(new Coordinate(key.x, key.y))));
+            Node newNode = new Node(entry.getKey());
             graph.put(newNode, entry.getValue());
         }
 
@@ -45,7 +45,7 @@ public class Graph {
     }
 
     // Get graph
-    public HashMap<Node, MapTile> getGraph() {
+    public Map<Node, MapTile> getGraph() {
         return graph;
     }
 
