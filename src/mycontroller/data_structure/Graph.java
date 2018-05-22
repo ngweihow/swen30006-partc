@@ -4,7 +4,6 @@ import tiles.MapTile;
 import tiles.TrapTile;
 import utilities.Coordinate;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Graph {
@@ -15,19 +14,32 @@ public class Graph {
     private final int ROAD=10;
     private final int TRAP_BAD=1000;
     private final int TRAP_GOOD=5;
+    private final int TILE_NOT_FOUND=-1;
 
-
-    private ArrayList<Node> nodes = new ArrayList<Node>();
-
-
+    // Map of world
     private HashMap<Coordinate, MapTile> map;
 
-    public Graph(HashMap<Coordinate, MapTile> map) {
+    // Graph which contains contents of map
+    private HashMap<Node, MapTile> graph;
 
-        for (Coordinate key : map.keySet()) {
-            Node newNode = new Node(key,weight(map.get(new Coordinate(key.x,key.y))));
-            nodes.add(newNode);
+
+    public Graph(HashMap<Coordinate, MapTile> map) {
+        this.map = map;
+        this.graph = createGraph();
+    }
+
+    // Creates a graph of map tiles
+    public HashMap<Node, MapTile> createGraph() {
+        HashMap<Node, MapTile> graph = new HashMap<>();
+
+        // Go over the coordinate and tiles of map
+        for (HashMap.Entry<Coordinate, MapTile> entry: map.entrySet()) {
+            Coordinate key = entry.getKey();
+            Node newNode = new Node(key, weight(map.get(new Coordinate(key.x, key.y))));
+            graph.put(newNode, entry.getValue());
         }
+
+        return graph;
     }
 
     public int weight(MapTile tile) {
@@ -58,5 +70,7 @@ public class Graph {
         if (tile.isType(MapTile.Type.ROAD)) {
             return ROAD;
         }
+
+        return TILE_NOT_FOUND;
     }
 }

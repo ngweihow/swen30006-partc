@@ -1,6 +1,5 @@
 package mycontroller.data_structure;
 
-import tiles.MapTile;
 import utilities.*;
 import java.util.ArrayList;
 
@@ -9,7 +8,6 @@ public class Node {
     private Coordinate coord;
 
     private ArrayList<Node> neighbours;
-
     private int weight;
 
     private static final int DEFAULT_WEIGHT=10;
