@@ -7,7 +7,6 @@ import utilities.Coordinate;
 import java.util.HashMap;
 
 public class Graph {
-
     private static final int WALL=10000;
     private static final int FINISH=1;
     private static final int START=10;

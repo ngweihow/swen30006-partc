@@ -14,16 +14,12 @@ public class Node {
     private static final int WELL_EXPLORED = 4;
 
     public Node(Coordinate coord,int weight) {
-
         this.coord = coord;
         this.neighbours = new ArrayList<>();
         this.weight=weight;
-
     }
 
     public boolean findNearest(ArrayList<Node> nodes) {
-
-
         // Return null if there the node is already well explored
         if (nodes.size() == WELL_EXPLORED) {
             return false;
@@ -33,15 +29,17 @@ public class Node {
         for(Node neighbour: nodes) {
             Coordinate neighbourCord = neighbour.getCord();
 
+            // Check horizontal neighbours
             if(Math.abs(neighbourCord.x-getCord().x)==1) {
                 if(Math.abs(neighbourCord.y - getCord().y)==0){
                     if(!neighbours.contains(neighbour)){
                         neighbours.add(neighbour);
-
                     }
                 }
 
             }
+
+            // Check Vertical neighbours
             if(Math.abs(neighbourCord.x-getCord().x)==0) {
                 if(Math.abs(neighbourCord.y - getCord().y)==1){
                     if(!neighbours.contains(neighbour)){
