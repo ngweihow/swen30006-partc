@@ -7,7 +7,7 @@ import utilities.Coordinate;
 import java.util.HashMap;
 
 
-public class Expedition implements TraversalStrategy {
+public class Expedition implements ITraversalStrategy {
 
 
     public Boolean stratagicBehaviour(HashMap<Coordinate, MapTile> currentView, Coordinate coordinate, float health) {
