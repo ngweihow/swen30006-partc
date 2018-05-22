@@ -38,6 +38,9 @@ public class Node {
 
             if(neighbourCord.x-getCord().x==1) {
                 if((neighbourCord.y - getCord().y)==0){
+                    if(neighbours.contains(nodes)){
+
+                    }
 
                 }
 
