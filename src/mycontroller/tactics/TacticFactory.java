@@ -4,6 +4,7 @@ public class TacticFactory {
 
     /**
      * Method to create tactics used for immediate traversal
+     * @param tacticName
      * @return a new Tactic object
      */
     public static ITraversalTactic createTactic(String tacticName) {
