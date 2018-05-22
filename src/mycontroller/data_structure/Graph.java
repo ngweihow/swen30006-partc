@@ -30,5 +30,8 @@ public class Graph {
         return graph;
     }
 
-
+    // Get graph
+    public HashMap<Node, MapTile> getGraph() {
+        return graph;
+    }
 }
