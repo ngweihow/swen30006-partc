@@ -11,7 +11,6 @@ public class Graph {
     private static final int WALL=10000;
     private static final int FINISH=1;
     private static final int START=10;
-    private static final int ROAD=10;
     private static final int LAVA_TRAP=1000;
     private static final int HEALTH_TRAP=5;
     private static final int TILE_NOT_FOUND=-1;
@@ -63,22 +62,30 @@ public class Graph {
      */
     public int weight(MapTile tile) {
 
+        // Only assign tiles new weights when
         if (tile.isType(MapTile.Type.TRAP)) {
             TrapTile trapTile = (TrapTile) tile;
+
+            // For each trap tile check the type for it
             if (trapTile.getTrap().equals(HEALTH)) {
                 return HEALTH_TRAP;
-            } else if (trapTile.getTrap().equals(LAVA)) {
+            }
+
+            else if (trapTile.getTrap().equals(LAVA)) {
                 return LAVA_TRAP;
             }
-        } else if (tile.isType(MapTile.Type.WALL)) {
-            return WALL;
-        } else if (tile.isType(MapTile.Type.FINISH)) {
-            return FINISH;
-        } else if (tile.isType(MapTile.Type.START)) {
-            return START;
-        } else if (tile.isType(MapTile.Type.ROAD)) {
-            return ROAD;
+
         }
+
+        // If it is not a trap 
+        else if (tile.isType(MapTile.Type.FINISH)) {
+            return FINISH;
+        }
+
+        else if (tile.isType(MapTile.Type.START)) {
+            return START;
+        }
+
         return TILE_NOT_FOUND;
     }
 }
