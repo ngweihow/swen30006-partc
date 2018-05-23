@@ -14,6 +14,12 @@ public class Node {
     private int y;
     private int weight;
 
+    // Neighbour Nodes
+    private Node westNode;
+    private Node eastNode;
+    private Node northNode;
+    private Node southNode;
+
     private static final int DEFAULT_WEIGHT = 10;
 
     public Node(Coordinate coord) {
@@ -24,9 +30,10 @@ public class Node {
     }
 
 
+
     /**
      * Get neighbouring nodes of current node
-     * @param unvisited unvisted nodes left in graph
+     * @param unvisited unvisited nodes left in graph
      * @return list containing neighbours of node
      */
     public ArrayList<Node> getNeighbours(Set<Node> unvisited) {
@@ -60,6 +67,7 @@ public class Node {
 
     }
 
+
     @Override
     public int hashCode() {
         return Objects.hash(x, y);
@@ -89,4 +97,35 @@ public class Node {
         this.coord = coord;
     }
 
+    public Node getWestNode() {
+        return westNode;
+    }
+
+    public void setWestNode(Node westNode) {
+        this.westNode = westNode;
+    }
+
+    public Node getEastNode() {
+        return eastNode;
+    }
+
+    public void setEastNode(Node eastNode) {
+        this.eastNode = eastNode;
+    }
+
+    public Node getNorthNode() {
+        return northNode;
+    }
+
+    public void setNorthNode(Node northNode) {
+        this.northNode = northNode;
+    }
+
+    public Node getSouthNode() {
+        return southNode;
+    }
+
+    public void setSouthNode(Node southNode) {
+        this.southNode = southNode;
+    }
 }

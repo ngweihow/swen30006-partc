@@ -1,29 +1,38 @@
 package mycontroller.tactics;
 
 import mycontroller.datastructure.Node;
-import tiles.MapTile;
-import tiles.TrapTile;
-import utilities.Coordinate;
+import world.WorldSpatial;
 
-import java.util.HashMap;
+
+import java.util.ArrayList;
 
 public class AvoidLava implements ITraversalTactic {
 
-    public AvoidLava() {
+    private ArrayList<Node> radius;
+    private Node source;
+    private static final int RANGE = 2;
 
+    public AvoidLava(Node currentNode) {
+        this.source = currentNode;
+    }
+
+    /**
+     * Scan the current node and returns the direction of which should be travelled
+     * @return The enum variable of a Direction to travel
+     */
+    public WorldSpatial.Direction scanForLava() {
+
+
+
+        return null;
+    }
+
+    public int seekDirection() {
+        return 0;
     }
 
 
-    public boolean tacticalBehaviour(HashMap<Node, MapTile> currentView,Coordinate coordinate) {
 
-        MapTile tile=currentView.get(new Coordinate(coordinate.x, coordinate.y));
-
-        if(tile.isType(MapTile.Type.TRAP)){
-            TrapTile trapTile = (TrapTile) tile;
-            return !trapTile.getTrap().equals("lava");
-        }
-        return true;
-    }
 
     @Override
     public void travel() {

@@ -24,6 +24,10 @@ public class Graph {
     // Graph which contains contents of map
     private Map<Node, MapTile> graph;
 
+    // Coordinate to Node HashMap
+    private HashMap<Coordinate, Node> coordMap;
+
+
     // Singleton constructor (Package private)
     Graph(HashMap<Coordinate, MapTile> map) {
         this.map = map;
@@ -32,25 +36,37 @@ public class Graph {
 
     /**
      * Creates the Graph Data Structure from data returned from getMap
-     * @return
+     * @return Map
      */
     private Map<Node, MapTile> createGraph() {
         Map<Node, MapTile> graph = new HashMap<>();
 
         // Go over the coordinate and tiles of map
         for (HashMap.Entry<Coordinate, MapTile> entry : map.entrySet()) {
+
+            // Get the key for the respective node and hash it into the graph
             Node newNode = new Node(entry.getKey());
             newNode.setWeight(weight(entry.getValue()));
             graph.put(newNode, entry.getValue());
+
+            // Hash node to the coordMap using coord as key
+            coordMap.put(entry.getKey(), newNode);
         }
 
         return graph;
     }
 
-    // Get graph
-    public Map<Node, MapTile> getGraph() {
-        return graph;
+
+    public void setAllNodeNeighbours() {
+
+        // Go over each coordinate in the coordinate hash and assign
+        for(HashMap.Entry<Coordinate, Node> entry: coordMap.entrySet()) {
+
+
+
+        }
     }
+
 
     /**
      * Setting the weight of the Node object depending on the tile type
@@ -74,7 +90,7 @@ public class Graph {
 
         }
 
-        // If it is not a trap 
+        // If it is not a trap
         else if (tile.isType(MapTile.Type.FINISH)) {
             return FINISH;
         }
@@ -84,5 +100,10 @@ public class Graph {
         }
 
         return TILE_NOT_FOUND;
+    }
+
+    // Get graph
+    public Map<Node, MapTile> getGraph() {
+        return graph;
     }
 }
