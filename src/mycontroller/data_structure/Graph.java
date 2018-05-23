@@ -7,6 +7,7 @@ import utilities.Coordinate;
 import java.util.HashMap;
 
 public class Graph {
+
     private static final int WALL=10000;
     private static final int FINISH=1;
     private static final int START=10;
@@ -24,20 +25,25 @@ public class Graph {
     // Graph which contains contents of map
     private HashMap<Node, MapTile> graph;
 
-
-    public Graph(HashMap<Coordinate, MapTile> map) {
+    // Singleton constructor
+    private Graph(HashMap<Coordinate, MapTile> map) {
         this.map = map;
         this.graph = createGraph();
     }
 
-    // Creates a graph of map tiles
-    public HashMap<Node, MapTile> createGraph() {
+
+    /**
+     * Creates the Graph Data Structure
+     * @return
+     */
+    private HashMap<Node, MapTile> createGraph() {
         HashMap<Node, MapTile> graph = new HashMap<>();
 
         // Go over the coordinate and tiles of map
         for (HashMap.Entry<Coordinate, MapTile> entry: map.entrySet()) {
+
             Coordinate key = entry.getKey();
-            Node newNode = new Node(key, weight(map.get(new Coordinate(key.x, key.y))));
+            Node newNode = new Node(key);
             graph.put(newNode, entry.getValue());
         }
 
@@ -49,6 +55,12 @@ public class Graph {
         return graph;
     }
 
+
+    /**
+     * Setting the weight of the Node object depending on the tile type
+     * @param tile
+     * @return
+     */
     public int weight(MapTile tile) {
 
         if (tile.isType(MapTile.Type.TRAP)) {

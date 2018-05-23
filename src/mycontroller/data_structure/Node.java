@@ -5,18 +5,19 @@ import java.util.ArrayList;
 
 public class Node {
 
-    private Coordinate coord;
-
-    private ArrayList<Node> neighbours;
-    private int weight;
-
+    // Constants
     public static final int DEFAULT_WEIGHT=10;
     public static final int WELL_EXPLORED = 4;
 
-    public Node(Coordinate coord,int weight) {
+    // Coordinates, Neighbour Nodes and Weights
+    private Coordinate coord;
+    private ArrayList<Node> neighbours;
+    private int weight = DEFAULT_WEIGHT;
+
+
+    public Node(Coordinate coord) {
         this.coord = coord;
         this.neighbours = new ArrayList<>();
-        this.weight=weight;
     }
 
     public boolean findNearest(ArrayList<Node> nodes) {
