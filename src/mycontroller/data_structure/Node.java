@@ -24,7 +24,11 @@ public class Node {
     }
 
 
-    // Get neighbouring nodes
+    /**
+     * Get neighbouring nodes of current node
+     * @param unvisited unvisted nodes left in graph
+     * @return list containing neighbours of node
+     */
     public ArrayList<Node> getNeighbours(Set<Node> unvisited) {
         ArrayList<Node> neighbours = new ArrayList<>();
 

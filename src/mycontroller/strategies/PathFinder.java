@@ -36,7 +36,10 @@ public class PathFinder {
         this.shortest = findShortestPath();
     }
 
-    // Get shortest path
+    /**
+     * Finds shortest path in graph.
+     * @return stack containing shortest path
+     */
     public Stack<Node> findShortestPath() {
         Node current;
         Stack<Node> shortest = new Stack<>();
@@ -83,7 +86,12 @@ public class PathFinder {
         return shortest;
     }
 
-    // Get closes node still in unvisited set
+    /**
+     * Finds closest node to current node
+     * @param dist distances of nodes
+     * @param unvisited unvisited nodes left in the graph
+     * @return
+     */
     public Node findClosestNode(Map<Node, Double> dist, Set<Node> unvisited) {
         Double currentMinimum = Double.MAX_VALUE;
         Node minimum = null;
@@ -103,6 +111,4 @@ public class PathFinder {
 
         return minimum;
     }
-
-
 }
