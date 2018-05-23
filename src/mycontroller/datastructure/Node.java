@@ -29,8 +29,6 @@ public class Node {
         this.weight = DEFAULT_WEIGHT;
     }
 
-
-
     /**
      * Get neighbouring nodes of current node
      * @param unvisited unvisited nodes left in graph
@@ -40,38 +38,29 @@ public class Node {
         ArrayList<Node> neighbours = new ArrayList<>();
 
         // Up
-        Node up = new Node(new Coordinate(x, y+1));
-        if (unvisited.contains(up)) {
-            neighbours.add(up);
+        if (unvisited.contains(getNorthNode())) {
+            neighbours.add(getNorthNode());
         }
 
         // Down
-        Node down = new Node(new Coordinate(x, y-1));
-        if (unvisited.contains(down)) {
-            neighbours.add(down);
+        if (unvisited.contains(getSouthNode())) {
+            neighbours.add(getSouthNode());
         }
 
         // Left
-        Node left = new Node(new Coordinate(x-1, y));
-        if (unvisited.contains(left)) {
-            neighbours.add(left);
+        if (unvisited.contains(getWestNode())) {
+            neighbours.add(getWestNode());
         }
 
         // Right
-        Node right = new Node(new Coordinate(x+1, y));
-        if (unvisited.contains(right)) {
-            neighbours.add(right);
+        if (unvisited.contains(getEastNode())) {
+            neighbours.add(getEastNode());
         }
 
         return neighbours;
 
     }
 
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(x, y);
-    }
 
     public int getX() {
         return x;
