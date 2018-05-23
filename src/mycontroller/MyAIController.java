@@ -27,6 +27,26 @@ public class MyAIController extends AIController{
 
         // Gets what the car can see
         HashMap<Coordinate, MapTile> currentView = getView();
+        //Gets the map layout with no traps what so ever.
+        HashMap<Coordinate, MapTile> globalView = getMap();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     }
 

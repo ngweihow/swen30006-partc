@@ -8,6 +8,7 @@ import java.util.Set;
 
 public class Node {
 
+    // Coordinates, Neighbour Nodes and Weights
     private Coordinate coord;
     private int x;
     private int y;
@@ -21,6 +22,7 @@ public class Node {
         this.y = coord.y;
         this.weight = DEFAULT_WEIGHT;
     }
+
 
     // Get neighbouring nodes
     public ArrayList<Node> getNeighbours(Set<Node> unvisited) {
@@ -82,6 +84,5 @@ public class Node {
     public void setCoord(Coordinate coord) {
         this.coord = coord;
     }
-
 
 }
