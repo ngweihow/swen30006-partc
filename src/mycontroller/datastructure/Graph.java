@@ -4,6 +4,7 @@ import tiles.MapTile;
 import tiles.TrapTile;
 import utilities.Coordinate;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -26,7 +27,7 @@ public class Graph {
 
     // Coordinate to Node HashMap
     private HashMap<Coordinate, Node> coordMap;
-
+    private ArrayList<Node> nodeList;
 
     // Singleton constructor (Package private)
     Graph(HashMap<Coordinate, MapTile> map) {
@@ -51,18 +52,44 @@ public class Graph {
 
             // Hash node to the coordMap using coord as key
             coordMap.put(entry.getKey(), newNode);
+            nodeList.add(newNode);
         }
 
         return graph;
     }
 
 
+    /**
+     * Setting all the neighbour nodes to a node
+     */
     public void setAllNodeNeighbours() {
 
+
         // Go over each coordinate in the coordinate hash and assign
-        for(HashMap.Entry<Coordinate, Node> entry: coordMap.entrySet()) {
+        for(Node node: nodeList) {
+            // Check other nodes
+            for(Node otherNode: nodeList) {
+                // Setting the NorthNode for this node
+                if((node.getX() == otherNode.getX()) && ((node.getY()+ 1) == otherNode.getY())) {
+                    node.setNorthNode(otherNode);
+                }
 
+                // Setting the EastNode for this node
+                if((node.getY() == otherNode.getY()) && ((node.getX()+ 1) == otherNode.getX())) {
+                    node.setEastNode(otherNode);
+                }
 
+                // Setting the SouthNode for this node
+                if((node.getX() == otherNode.getX()) && ((node.getY()- 1) == otherNode.getY())) {
+                    node.setNorthNode(otherNode);
+                }
+
+                // Setting the WestNode for this node
+                if((node.getY() == otherNode.getY()) && ((node.getX()- 1) == otherNode.getX())) {
+                    node.setEastNode(otherNode);
+                }
+
+            }
 
         }
     }
