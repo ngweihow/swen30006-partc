@@ -1,7 +1,6 @@
 package mycontroller.strategies;
 
 import mycontroller.datastructure.Node;
-import utilities.Coordinate;
 
 import java.util.ArrayList;
 
