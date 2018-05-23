@@ -32,12 +32,13 @@ public class Graph {
     }
 
     // Creates a graph of map tiles
-    public Map<Node, MapTile> createGraph() {
+    private Map<Node, MapTile> createGraph() {
         Map<Node, MapTile> graph = new HashMap<>();
 
         // Go over the coordinate and tiles of map
         for (HashMap.Entry<Coordinate, MapTile> entry: map.entrySet()) {
             Node newNode = new Node(entry.getKey());
+            newNode.setWeight(weight(entry.getValue()));
             graph.put(newNode, entry.getValue());
         }
 
@@ -49,7 +50,7 @@ public class Graph {
         return graph;
     }
 
-    public int weight(MapTile tile) {
+    private int weight(MapTile tile) {
 
         if (tile.isType(MapTile.Type.TRAP)) {
             TrapTile trapTile = (TrapTile) tile;

@@ -3,7 +3,6 @@ package mycontroller.strategies;
 import mycontroller.data_structure.Node;
 import mycontroller.data_structure.Graph;
 import tiles.MapTile;
-import utilities.Coordinate;
 
 import java.util.*;
 
@@ -32,16 +31,14 @@ public class PathFinder {
         this.unvisited = new HashSet<>();
         this.dist = new HashMap<>();
         this.prev = new HashMap<>();
-        this.shortest = new Stack<>();
 
-        findShortestPath();
-
+        this.shortest = findShortestPath();
     }
 
     // Get shortest path
-    public void findShortestPath() {
+    public Stack<Node> findShortestPath() {
         Node current;
-        Node previous;
+        Stack<Node> shortest = new Stack<>();
 
         // Initialise data structures for djkistras
         for (Map.Entry<Node, MapTile> entry: graph.getGraph().entrySet()) {
@@ -59,62 +56,30 @@ public class PathFinder {
             unvisited.remove(current);
 
             // Go through each neighbour
-            for (Node neighbour : getNeighbours(unvisited, current)) {
+            for (Node neighbour : current.getNeighbours(unvisited)) {
+                if (neighbour.getWeight() != Double.POSITIVE_INFINITY) {
+                    // Get distance between neighbour and current node
+                    double alt = dist.get(current) + neighbour.getWeight();
 
-                // Get distance between neighbour and current node
-                double alt = dist.get(current) + Math.abs(dist.get(current) - dist.get(neighbour));
-
-                // If distance is smaller, update
-                if (Double.compare(alt, dist.get(neighbour)) < 0) {
-                    dist.put(neighbour, alt);
-                    prev.put(neighbour, current);
+                    // If distance is smaller, update
+                    if (Double.compare(alt, dist.get(neighbour)) < 0) {
+                        dist.put(neighbour, alt);
+                        prev.put(neighbour, current);
+                    }
                 }
             }
+        }
 
-            current = destination;
+        current = destination;
 
-            // Construct shortest path with stack
-            while (prev.get(current) != null) {
-                shortest.push(current);
-                current = prev.get(current);
-            }
+        // Construct shortest path with stack
+        while (prev.get(current) != null) {
             shortest.push(current);
+            current = prev.get(current);
         }
-    }
+        shortest.push(current);
 
-    // Get neighbouring nodes
-    public ArrayList<Node> getNeighbours(Set<Node> unvisited, Node current) {
-        ArrayList<Node> neighbours = new ArrayList<>();
-
-        int x = current.getX();
-        int y = current.getY();
-
-        // Up
-        Node up = new Node(new Coordinate(x, y+1));
-        if (unvisited.contains(up)) {
-            neighbours.add(up);
-        }
-
-        // Down
-        Node down = new Node(new Coordinate(x, y-1));
-        if (unvisited.contains(down)) {
-            neighbours.add(down);
-        }
-
-        // Left
-        Node left = new Node(new Coordinate(x-1, y));
-        if (unvisited.contains(left)) {
-            neighbours.add(left);
-        }
-
-        // Right
-        Node right = new Node(new Coordinate(x+1, y));
-        if (unvisited.contains(right)) {
-            neighbours.add(right);
-        }
-
-        return neighbours;
-
+        return shortest;
     }
 
     // Get closes node still in unvisited set
