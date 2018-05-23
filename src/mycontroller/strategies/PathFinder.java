@@ -7,6 +7,7 @@ import tiles.MapTile;
 import java.util.*;
 
 public class PathFinder {
+    // Constructor variables
     private Graph graph;
     private Node source;
     private Node destination;
@@ -14,7 +15,7 @@ public class PathFinder {
     // Keep a set of unvisited nodes
     private Set<Node> unvisited;
 
-    // Recprd distances in hashmap
+    // Record distances in hashmap
     private Map<Node, Double> dist;
 
     // Record previous nodes
