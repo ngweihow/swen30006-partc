@@ -21,6 +21,7 @@ public class Atlas {
         // Initialise Graph
         Graph graph = new Graph(originalMap);
 
+        // Initialise Map
 
     }
 }
