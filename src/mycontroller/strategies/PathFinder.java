@@ -44,7 +44,7 @@ public class PathFinder {
         Node current;
         Stack<Node> shortest = new Stack<>();
 
-        // Initialise data structures for djkistras
+        // Initialise data structures for dijkstra's
         for (Map.Entry<Node, MapTile> entry: graph.getGraph().entrySet()) {
             dist.put(entry.getKey(), new Double(Double.POSITIVE_INFINITY));
             prev.put(entry.getKey(), null);
