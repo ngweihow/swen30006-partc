@@ -1,6 +1,6 @@
 package mycontroller.tactics;
 
-import mycontroller.data_structure.Node;
+import mycontroller.datastructure.Node;
 import tiles.MapTile;
 import utilities.Coordinate;
 

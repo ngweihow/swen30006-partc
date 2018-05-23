@@ -1,4 +1,4 @@
-package mycontroller.data_structure;
+package mycontroller.datastructure;
 
 import tiles.MapTile;
 import tiles.TrapTile;
@@ -9,7 +9,6 @@ import java.util.Map;
 
 public class Graph {
 
-    private static final int WALL=10000;
     private static final int FINISH=1;
     private static final int START=10;
     private static final int LAVA_TRAP=1000;
@@ -25,14 +24,14 @@ public class Graph {
     // Graph which contains contents of map
     private Map<Node, MapTile> graph;
 
-    // Singleton constructor
-    private Graph(HashMap<Coordinate, MapTile> map) {
+    // Singleton constructor (Package private)
+    Graph(HashMap<Coordinate, MapTile> map) {
         this.map = map;
         this.graph = createGraph();
     }
 
     /**
-     * Creates the Graph Data Structure
+     * Creates the Graph Data Structure from data returned from getMap
      * @return
      */
     private Map<Node, MapTile> createGraph() {

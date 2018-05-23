@@ -1,7 +1,7 @@
 package mycontroller.strategies;
 
-import mycontroller.data_structure.Node;
-import mycontroller.data_structure.Graph;
+import mycontroller.datastructure.Node;
+import mycontroller.datastructure.Graph;
 import tiles.MapTile;
 
 import java.util.*;

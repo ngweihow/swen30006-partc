@@ -1,4 +1,4 @@
-package mycontroller.data_structure;
+package mycontroller.datastructure;
 
 import utilities.*;
 

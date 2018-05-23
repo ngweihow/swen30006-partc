@@ -1,6 +1,6 @@
 package mycontroller.strategies;
 
-import mycontroller.data_structure.Node;
+import mycontroller.datastructure.Node;
 import mycontroller.tactics.AvoidLava;
 import tiles.MapTile;
 import utilities.Coordinate;
