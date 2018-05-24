@@ -1,9 +1,6 @@
 package mycontroller.datastructure;
 
-import mycontroller.strategies.CompositeStrategy;
-import mycontroller.strategies.ITraversalStrategy;
-import mycontroller.strategies.StrategyFactory;
-import mycontroller.strategies.Sweep;
+import mycontroller.strategies.*;
 import tiles.MapTile;
 import utilities.Coordinate;
 import world.World;
@@ -64,7 +61,6 @@ public class Atlas {
         strategyUsed = new CompositeStrategy(compositionList);
 
 
-        
 
     }
 
