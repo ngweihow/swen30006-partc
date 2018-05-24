@@ -1,5 +1,6 @@
 package mycontroller.strategies;
 
+import mycontroller.datastructure.Graph;
 import mycontroller.datastructure.Node;
 
 public class Sweep implements ITraversalStrategy {
@@ -15,7 +16,7 @@ public class Sweep implements ITraversalStrategy {
      * @return The destination the strategy wants to end up in
      */
     @Override
-    public Node findDestination(Node source) {
-        return null;
+    public boolean findDestination(Graph graph, Node source) {
+        return false;
     }
 }

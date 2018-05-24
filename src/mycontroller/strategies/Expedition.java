@@ -1,6 +1,7 @@
 package mycontroller.strategies;
 
 import mycontroller.datastructure.Atlas;
+import mycontroller.datastructure.Graph;
 import mycontroller.datastructure.Node;
 import mycontroller.tactics.AvoidLava;
 import tiles.MapTile;
@@ -19,11 +20,11 @@ public class Expedition implements ITraversalStrategy {
      * @return The destination the strategy wants to end up in
      */
     @Override
-    public Node findDestination(Node source) {
+    public boolean findDestination(Graph graph, Node source) {
 
         PathFinder pathFinder = new PathFinder(null, source, null);
 
 
-        return null;
+        return false;
     }
 }
