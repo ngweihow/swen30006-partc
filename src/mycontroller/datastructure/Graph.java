@@ -98,7 +98,7 @@ public class Graph {
     /**
      * Setting the weight of the Node object depending on the tile type
      * @param tile
-     * @return
+     * @return weight of tile
      */
     public int weight(MapTile tile) {
 
