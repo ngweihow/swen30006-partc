@@ -12,14 +12,14 @@ import java.util.Stack;
 
 public class Exit implements ITraversalStrategy {
     private Map<Node, MapTile> graph;
-    private Node destination;
+    //private Node destination;
 
     public Exit(HashMap<Node, MapTile> graph) {
         this.graph = graph;
-        this.destination = getDestination(graph);
+        //this.destination = getDestination(graph);
     }
 
-    public Node getDestination(Map<Node, MapTile> graph) {
+    /*public Node getDestination(Map<Node, MapTile> graph) {
         for (Map.Entry<Node, MapTile> entry: graph.entrySet()) {
             if (entry.getValue().isType(MapTile.Type.FINISH)) {
                 return entry.getKey();
@@ -27,7 +27,7 @@ public class Exit implements ITraversalStrategy {
         }
 
         return null;
-    }
+    }*/
 
     /**
      * Takes the current Node and finds the the optimal traversal to it
@@ -37,8 +37,8 @@ public class Exit implements ITraversalStrategy {
      */
     @Override
     public boolean findDestination(Map<Node, MapTile> graph, Node source) {
-        PathFinder pathFinder = new PathFinder(graph, source, destination);
-        Stack<Node> solution = pathFinder.findShortestPath();
+        //PathFinder pathFinder = new PathFinder(graph, source, destination);
+        //Stack<Node> solution = pathFinder.findShortestPath();
 
 
 

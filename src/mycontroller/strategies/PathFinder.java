@@ -44,6 +44,7 @@ public class PathFinder {
             current = findClosestNode(dist, unvisited);
             unvisited.remove(current);
 
+            // If current tile is destination, we found a path
             if (current.equals(destination)) {
                 break;
             }
@@ -81,18 +82,17 @@ public class PathFinder {
      */
     private Node findClosestNode(Map<Node, Double> dist, Set<Node> unvisited) {
         Double currentMinimum = Double.MAX_VALUE;
-        Node minimum = null;
+        ArrayList<Node> unvisitedNodes = new ArrayList<>(unvisited);
+        Node minimum = unvisitedNodes.get(0);
 
-        // Go through all the unvisited nodes
-        for (Node node: unvisited) {
-            if (dist.containsKey(node)) {
-                Double currentDist = dist.get(node);
+        for (int i = 1; i < unvisitedNodes.size(); i++) {
+            Node currentNode = unvisitedNodes.get(i);
+            Double currentDist = dist.get(currentNode);
 
-                // If current distance is less than minimum, update
-                if (Double.compare(currentDist, currentMinimum) < 0) {
-                    minimum = node;
-                    currentMinimum = currentDist;
-                }
+            // If current distance is less than minimum, update
+            if (Double.compare(currentDist, currentMinimum) < 0) {
+                minimum = currentNode;
+                currentMinimum = currentDist;
             }
         }
 

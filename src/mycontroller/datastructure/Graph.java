@@ -3,6 +3,7 @@ package mycontroller.datastructure;
 import tiles.MapTile;
 import tiles.TrapTile;
 import utilities.Coordinate;
+import world.World;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -10,10 +11,10 @@ import java.util.Map;
 
 public class Graph {
 
-    private static final int FINISH=1;
-    private static final int START=10;
-    private static final int LAVA_TRAP=1000;
-    private static final int HEALTH_TRAP=5;
+    private static final int FINISH = 0;
+    private static final int DEFAULT = 1;
+    private static final int LAVA_TRAP = World.MAP_HEIGHT * World.MAP_WIDTH;
+    private static final int HEALTH_TRAP = 5;
 
     private static final String LAVA = "lava";
     private static final String HEALTH = "health";
@@ -25,14 +26,21 @@ public class Graph {
     private Map<Node, MapTile> graph;
 
     // Coordinate to Node HashMap
-    private HashMap<Coordinate, Node> coordMap;
     private ArrayList<Node> nodeList;
+
+    // Get source and destination of map
+    private Node destination;
 
     // Singleton constructor (Package private)
     public Graph(HashMap<Coordinate, MapTile> map) {
         this.map = map;
+        this.nodeList = new ArrayList<>();
+
         this.graph = createGraph();
-        setAllNodeNeighbours();
+
+        this.destination = getDestination(graph);
+
+        setAllNodeNeighbours(nodeList);
     }
 
     /**
@@ -51,7 +59,6 @@ public class Graph {
             graph.put(newNode, entry.getValue());
 
             // Hash node to the coordMap using coord as key
-            coordMap.put(entry.getKey(), newNode);
             nodeList.add(newNode);
         }
 
@@ -62,7 +69,7 @@ public class Graph {
     /**
      * Setting all the neighbour nodes to a node
      */
-    public void setAllNodeNeighbours() {
+    public void setAllNodeNeighbours(ArrayList<Node> nodeList) {
 
         // Go over each coordinate in the coordinate hash and assign
         for(Node node: nodeList) {
@@ -80,17 +87,27 @@ public class Graph {
 
                 // Setting the SouthNode for this node
                 if((node.getX() == otherNode.getX()) && ((node.getY()- 1) == otherNode.getY())) {
-                    node.setNorthNode(otherNode);
+                    node.setSouthNode(otherNode);
                 }
 
                 // Setting the WestNode for this node
                 if((node.getY() == otherNode.getY()) && ((node.getX()- 1) == otherNode.getX())) {
-                    node.setEastNode(otherNode);
+                    node.setWestNode(otherNode);
                 }
 
             }
 
         }
+    }
+
+    public Node getDestination(Map<Node, MapTile> graph) {
+        for (Map.Entry<Node, MapTile> entry: graph.entrySet()) {
+            if (entry.getValue().isType(MapTile.Type.FINISH)) {
+                return entry.getKey();
+            }
+        }
+
+        return null;
     }
 
 
@@ -118,11 +135,18 @@ public class Graph {
         // If it is not a trap
         else if (tile.isType(MapTile.Type.FINISH)) {
             node.setWeight(FINISH);
+        } else if (tile.isType(MapTile.Type.WALL)){
+            node.setWeight((int)Double.POSITIVE_INFINITY);
+        }else if (tile.isType(MapTile.Type.START)) {
+            node.setWeight(DEFAULT);
+        } else {
+            node.setWeight(DEFAULT);
         }
+    }
 
-        else if (tile.isType(MapTile.Type.START)) {
-            node.setWeight(START);
-        }
+    // Get destination
+    public Node getDestination() {
+        return destination;
     }
 
     // Get graph

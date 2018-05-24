@@ -8,6 +8,7 @@ import tiles.MapTile;
 import utilities.Coordinate;
 
 import java.util.HashMap;
+import java.util.Map;
 
 
 public class Expedition implements ITraversalStrategy {
@@ -20,7 +21,7 @@ public class Expedition implements ITraversalStrategy {
      * @return The destination the strategy wants to end up in
      */
     @Override
-    public boolean findDestination(Graph graph, Node source) {
+    public boolean findDestination(Map<Node, MapTile> graph, Node source) {
 
         PathFinder pathFinder = new PathFinder(graph, source, null);
 
