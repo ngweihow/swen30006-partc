@@ -52,7 +52,7 @@ public class MyAIController extends AIController{
         // printPath(solution);
 
         // Get Driver
-        // this.driver = new Driver(this, solution);
+        this.driver = new Driver(this, solution);
     }
 
     public void printPath(Stack<Node> solution) {
@@ -67,7 +67,7 @@ public class MyAIController extends AIController{
 
     @Override
     public void update(float delta) {
-        //driver.driveCar(delta);
+        driver.driveCar(delta);
     }
 
 }
