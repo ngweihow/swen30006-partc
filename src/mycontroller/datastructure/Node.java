@@ -61,6 +61,26 @@ public class Node {
 
     }
 
+    public boolean checkPosition(Node other) {
+        return x == other.getX() && y == other.getY();
+    }
+
+    //Override methods to allow Node objects to be used as keys/comparison
+    @Override
+    public int hashCode() {
+        return Objects.hash(x, y);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+
+        if (o == this) return true;
+        if (!(o instanceof Node)) {
+            return false;
+        }
+        Node node = (Node) o;
+        return x == node.x && Objects.equals(y, node.y);
+    }
 
     public int getX() {
         return x;
