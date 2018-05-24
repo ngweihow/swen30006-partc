@@ -74,28 +74,25 @@ public class AvoidLava implements ITraversalTactic {
             case NORTH:
                 weights += node.getWeight();
                 range--;
-                seekDirection(WorldSpatial.Direction.NORTH, range, weights, node.getNorthNode());
-                break;
+                return seekDirection(WorldSpatial.Direction.NORTH, range, weights, node.getNorthNode());
 
             case EAST:
                 weights += node.getWeight();
                 range--;
-                seekDirection(WorldSpatial.Direction.EAST, range, weights, node.getEastNode());
-                break;
+                return seekDirection(WorldSpatial.Direction.EAST, range, weights, node.getEastNode());
 
             case SOUTH:
                 weights += node.getWeight();
                 range--;
-                seekDirection(WorldSpatial.Direction.SOUTH, range, weights, node.getSouthNode());
-                break;
+                return seekDirection(WorldSpatial.Direction.SOUTH, range, weights, node.getSouthNode());
+
 
             case WEST:
                 weights += node.getWeight();
                 range--;
-                seekDirection(WorldSpatial.Direction.WEST, range, weights, node.getWestNode());
-                break;
-        }
+                return seekDirection(WorldSpatial.Direction.WEST, range, weights, node.getWestNode());
 
+        }
 
         return 0;
     }
@@ -103,7 +100,7 @@ public class AvoidLava implements ITraversalTactic {
 
     /**
      * Returns the next node where to travel to
-     * @return Next node to travel to 
+     * @return Next node to travel to
      */
     @Override
     public Node travel() {
