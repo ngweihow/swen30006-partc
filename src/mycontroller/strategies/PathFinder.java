@@ -12,37 +12,22 @@ public class PathFinder {
     private Node source;
     private Node destination;
 
-    // Keep a set of unvisited nodes
-    private Set<Node> unvisited;
-
-    // Record distances in hashmap
-    private Map<Node, Double> dist;
-
-    // Record previous nodes
-    private Map<Node, Node> prev;
-
-    // Shortest path stored here
-    private Stack<Node> shortest;
-
     public PathFinder(Graph graph, Node source, Node destination) {
         this.graph = graph;
         this.source = source;
         this.destination = destination;
-
-        this.unvisited = new HashSet<>();
-        this.dist = new HashMap<>();
-        this.prev = new HashMap<>();
-
-        this.shortest = findShortestPath(graph);
     }
 
     /**
      * Finds shortest path in graph.
      * @return stack containing shortest path
      */
-    private Stack<Node> findShortestPath(Graph graph) {
+    private Stack<Node> findShortestPath() {
         Node current;
         Stack<Node> shortest = new Stack<>();
+        Set<Node> unvisited = new HashSet<>();
+        Map<Node, Double> dist = new HashMap<>();
+        Map<Node, Node> prev = new HashMap<>();
 
         // Initialise data structures for dijkstra's
         for (Map.Entry<Node, MapTile> entry: graph.getGraph().entrySet()) {
@@ -58,6 +43,10 @@ public class PathFinder {
         while (!unvisited.isEmpty()) {
             current = findClosestNode(dist, unvisited);
             unvisited.remove(current);
+
+            if (current.equals(destination)) {
+                break;
+            }
 
             // Go through each neighbour
             for (Node neighbour : current.getNeighbours(unvisited)) {
