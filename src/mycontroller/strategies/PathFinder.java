@@ -53,7 +53,7 @@ public class PathFinder {
 
         // Distance from source to source
         dist.put(source, 0.0);
-
+        
         // Visit all unvisited nodes
         while (!unvisited.isEmpty()) {
             current = findClosestNode(dist, unvisited);
