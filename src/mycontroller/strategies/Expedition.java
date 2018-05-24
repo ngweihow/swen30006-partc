@@ -1,5 +1,6 @@
 package mycontroller.strategies;
 
+import mycontroller.MyAIController;
 import mycontroller.datastructure.Atlas;
 import mycontroller.datastructure.Graph;
 import mycontroller.datastructure.Node;
@@ -9,6 +10,7 @@ import utilities.Coordinate;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Stack;
 
 
 public class Expedition implements ITraversalStrategy {
@@ -16,16 +18,12 @@ public class Expedition implements ITraversalStrategy {
 
     /**
      * Takes the current Node and finds the the optimal traversal to it
-     *
-     * @param source The source Node from where traversing begins
+     * @param graph The HashMap from the Graph class
      * @return The destination the strategy wants to end up in
      */
     @Override
-    public boolean findDestination(Map<Node, MapTile> graph, Node source) {
-
-        PathFinder pathFinder = new PathFinder(graph, source, null);
-
-
-        return false;
+    public Stack<Node> findDestination(Map<Node, MapTile> graph, MyAIController controller) {
+        PathFinder pathFinder = new PathFinder(graph, null, null);
+        return null;
     }
 }

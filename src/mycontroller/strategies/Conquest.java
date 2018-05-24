@@ -1,10 +1,12 @@
 package mycontroller.strategies;
 
+import mycontroller.MyAIController;
 import mycontroller.datastructure.Graph;
 import mycontroller.datastructure.Node;
 import tiles.MapTile;
 
 import java.util.Map;
+import java.util.Stack;
 
 public class Conquest implements ITraversalStrategy {
 
@@ -15,12 +17,12 @@ public class Conquest implements ITraversalStrategy {
     /**
      * Takes the current Node and finds the the optimal traversal to it
      *
-     * @param source The source Node from where traversing begins
+     * @param graph The HashMap from the Graph class
      * @return The destination the strategy wants to end up in
      */
     @Override
-    public boolean findDestination(Map<Node, MapTile> graph, Node source) {
+    public Stack<Node> findDestination(Map<Node, MapTile> graph, MyAIController controller) {
 
-        return false;
+        return null;
     }
 }

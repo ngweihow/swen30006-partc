@@ -1,12 +1,12 @@
 package mycontroller.datastructure;
 
+import mycontroller.MyAIController;
+import mycontroller.strategies.Exit;
 import mycontroller.strategies.*;
-import tiles.MapTile;
-import utilities.Coordinate;
-import world.World;
+import mycontroller.tactics.Driver;
 
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.Stack;
 
 public class Atlas {
 
@@ -14,6 +14,7 @@ public class Atlas {
     private StrategyFactory strategyFactory;
     private static ArrayList<String> strategyList;
     private ArrayList<ITraversalStrategy> compositionList;
+    private ITraversalStrategy strategyExit ;
 
     // Strategies to be used for Composite Strategy
     private static final String EXPEDITION = "Expedition";
@@ -21,8 +22,11 @@ public class Atlas {
     private static final String SWEEP = "Sweep";
     private static final String EXIT = "Exit";
 
+    private Driver driver;
+
     // Static Block to populate the arraylist of strategystrings
     static {
+        strategyList = new ArrayList<>();
         strategyList.add(EXPEDITION);
         strategyList.add(CONQUEST);
         strategyList.add(SWEEP);
@@ -37,17 +41,16 @@ public class Atlas {
     /**
      * Initialises an Atlas where the one Simulation is run
      */
-    public void initAtlas() {
-
-        // Get Initial Map from World Package
-        HashMap<Coordinate, MapTile> originalMap;
-        originalMap = World.getMap();
-
-        // Initialise Graph
-        Graph graph = new Graph(originalMap);
+    public void initAtlas(MyAIController controller) {
 
 
+        // Initialise Graph with Singleton call
+        Graph graph = Graph.getGraph();
 
+        // Make sure that each Node in the Graph is connected to their neighbours
+        graph.setAllNodeNeighbours();
+
+        /*
         // Initialise the strategy factory
         strategyFactory = new StrategyFactory();
 
@@ -59,8 +62,13 @@ public class Atlas {
 
         // Initialise the composite strategy used
         strategyUsed = new CompositeStrategy(compositionList);
+        */
 
+        strategyExit = new Exit(graph.getGraphNodes());
+        Stack<Node> solution = strategyExit.findDestination(graph.getGraphNodes(), controller);
 
+        // Get Driver
+        Driver driver = new Driver(controller, solution);
 
     }
 
