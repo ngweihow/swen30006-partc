@@ -27,7 +27,7 @@ public class TacticFactory {
 
         // AvoidLava Tactic
         else if(tacticName.equals("AvoidLava")) {
-            return new AvoidLava();
+            return new AvoidLava(null);
         }
 
 

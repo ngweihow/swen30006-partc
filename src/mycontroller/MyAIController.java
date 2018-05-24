@@ -47,15 +47,12 @@ public class MyAIController extends AIController{
         this.solution = pathFinder.findShortestPath();
 
         // Get Driver
-        this.driver = new Driver(this, solution);
+        // this.driver = new Driver(this, solution);
     }
 
     @Override
     public void update(float delta) {
-        driver.driveCar(delta);
+        //driver.driveCar(delta);
     }
-
-
-
 
 }

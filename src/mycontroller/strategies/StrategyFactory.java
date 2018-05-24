@@ -35,7 +35,7 @@ public class StrategyFactory {
         // Exit
         // Attempt to traverse to the exit of the map
         if(strategyName.equals("Exit")) {
-            return new Exit();
+            return new Exit(null);
         }
 
         return null;

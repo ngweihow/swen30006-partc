@@ -2,8 +2,10 @@ package mycontroller.strategies;
 
 import mycontroller.datastructure.Graph;
 import mycontroller.datastructure.Node;
+import tiles.MapTile;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 public class CompositeStrategy implements ITraversalStrategy {
 
@@ -21,7 +23,7 @@ public class CompositeStrategy implements ITraversalStrategy {
      * @return The destination the strategy wants to end up in
      */
     @Override
-    public boolean findDestination(Graph graph, Node source) {
+    public boolean findDestination(Map<Node, MapTile> graph, Node source) {
         return false;
     }
 
