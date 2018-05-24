@@ -39,14 +39,12 @@ public class Atlas {
      */
     public void initAtlas() {
 
-        // Get Initial Map from World Package
-        HashMap<Coordinate, MapTile> originalMap;
-        originalMap = World.getMap();
 
-        // Initialise Graph
-        Graph graph = new Graph(originalMap);
+        // Initialise Graph with Singleton call
+        Graph graph = Graph.createGraph();
 
-
+        // Make sure that each Node in the Graph is connected to their neighbours
+        graph.setAllNodeNeighbours();
 
         // Initialise the strategy factory
         strategyFactory = new StrategyFactory();

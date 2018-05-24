@@ -3,12 +3,17 @@ package mycontroller.datastructure;
 import tiles.MapTile;
 import tiles.TrapTile;
 import utilities.Coordinate;
+import world.World;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
 public class Graph {
+
+    // Instantiation of the static Singleton Class Graph
+    private static final Graph GRAPH_INSTANCE = new Graph();
+
 
     private static final int FINISH=1;
     private static final int START=10;
@@ -19,7 +24,7 @@ public class Graph {
     private static final String HEALTH = "health";
 
     // Map of world
-    private HashMap<Coordinate, MapTile> map;
+    private HashMap<Coordinate, MapTile> originalMap;
 
     // Graph which contains contents of map
     private Map<Node, MapTile> graph;
@@ -28,34 +33,39 @@ public class Graph {
     private HashMap<Coordinate, Node> coordMap;
     private ArrayList<Node> nodeList;
 
-    // Singleton constructor (Package private)
-    public Graph(HashMap<Coordinate, MapTile> map) {
-        this.map = map;
-        this.graph = createGraph();
-        setAllNodeNeighbours();
+    // Static block to get all the map tiles from before
+    static {
+        // Get Initial Map from World Package
+        HashMap<Coordinate, MapTile> originalMap;
+        originalMap = World.getMap();
     }
 
-    /**
-     * Creates the Graph Data Structure from data returned from getMap
-     * @return Map
-     */
-    private Map<Node, MapTile> createGraph() {
-        Map<Node, MapTile> graph = new HashMap<>();
+
+    // Singleton constructor (Package private)
+    Graph() {
 
         // Go over the coordinate and tiles of map
-        for (HashMap.Entry<Coordinate, MapTile> entry : map.entrySet()) {
+        for (HashMap.Entry<Coordinate, MapTile> entry : originalMap.entrySet()) {
 
             // Get the key for the respective node and hash it into the graph
             Node newNode = new Node(entry.getKey());
             addWeight(entry.getValue(), newNode);
             graph.put(newNode, entry.getValue());
 
-            // Hash node to the coordMap using coord as key
-            coordMap.put(entry.getKey(), newNode);
+            // Add Nodes to List of Nodes
             nodeList.add(newNode);
         }
 
-        return graph;
+    }
+
+    /**
+     * Returns the Graph Instant Structure from data
+     * @return The Singleton Graph Instantiation
+     */
+    public static Graph createGraph() {
+
+        // Return GRAPH_INSTANCE
+        return GRAPH_INSTANCE;
     }
 
 
@@ -125,7 +135,7 @@ public class Graph {
         }
     }
 
-    // Get graph
+    // Getter for graph
     public Map<Node, MapTile> getGraph() {
         return graph;
     }
