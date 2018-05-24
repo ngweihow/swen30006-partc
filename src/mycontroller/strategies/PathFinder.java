@@ -33,27 +33,27 @@ public class PathFinder {
         this.dist = new HashMap<>();
         this.prev = new HashMap<>();
 
-        this.shortest = findShortestPath();
+        this.shortest = findShortestPath(graph);
     }
 
     /**
      * Finds shortest path in graph.
      * @return stack containing shortest path
      */
-    public Stack<Node> findShortestPath() {
+    private Stack<Node> findShortestPath(Graph graph) {
         Node current;
         Stack<Node> shortest = new Stack<>();
 
         // Initialise data structures for dijkstra's
         for (Map.Entry<Node, MapTile> entry: graph.getGraph().entrySet()) {
-            dist.put(entry.getKey(), new Double(Double.POSITIVE_INFINITY));
+            dist.put(entry.getKey(), Double.POSITIVE_INFINITY);
             prev.put(entry.getKey(), null);
             unvisited.add(entry.getKey());
         }
 
         // Distance from source to source
         dist.put(source, 0.0);
-        
+
         // Visit all unvisited nodes
         while (!unvisited.isEmpty()) {
             current = findClosestNode(dist, unvisited);
@@ -61,15 +61,13 @@ public class PathFinder {
 
             // Go through each neighbour
             for (Node neighbour : current.getNeighbours(unvisited)) {
-                if (neighbour.getWeight() != Double.POSITIVE_INFINITY) {
-                    // Get distance between neighbour and current node
-                    double alt = dist.get(current) + neighbour.getWeight();
+                // Get distance between neighbour and current node
+                double alt = dist.get(current) + neighbour.getWeight();
 
-                    // If distance is smaller, update
-                    if (Double.compare(alt, dist.get(neighbour)) < 0) {
-                        dist.put(neighbour, alt);
-                        prev.put(neighbour, current);
-                    }
+                // If distance is smaller, update
+                if (Double.compare(alt, dist.get(neighbour)) < 0) {
+                    dist.put(neighbour, alt);
+                    prev.put(neighbour, current);
                 }
             }
         }
@@ -90,9 +88,9 @@ public class PathFinder {
      * Finds closest node to current node
      * @param dist distances of nodes
      * @param unvisited unvisited nodes left in the graph
-     * @return
+     * @return closest node available
      */
-    public Node findClosestNode(Map<Node, Double> dist, Set<Node> unvisited) {
+    private Node findClosestNode(Map<Node, Double> dist, Set<Node> unvisited) {
         Double currentMinimum = Double.MAX_VALUE;
         Node minimum = null;
 

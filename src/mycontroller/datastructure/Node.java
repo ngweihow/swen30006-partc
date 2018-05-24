@@ -61,6 +61,10 @@ public class Node {
 
     }
 
+    public boolean checkPosition(Node other) {
+        return x == other.getX() && y == other.getY();
+    }
+
 
     public int getX() {
         return x;
