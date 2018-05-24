@@ -14,30 +14,32 @@ public class Graph {
     // Instantiation of the static Singleton Class Graph
     private static final Graph GRAPH_INSTANCE = new Graph();
 
-
-    private static final int FINISH=1;
-    private static final int START=10;
-    private static final int LAVA_TRAP=1000;
-    private static final int HEALTH_TRAP=5;
+    private static final int FINISH = 0;
+    private static final int DEFAULT = 1;
+    private static final int LAVA_TRAP = World.MAP_HEIGHT * World.MAP_WIDTH;
+    private static final int HEALTH_TRAP = 5;
 
     private static final String LAVA = "lava";
     private static final String HEALTH = "health";
 
     // Map of world
-    private HashMap<Coordinate, MapTile> originalMap;
+    private static HashMap<Coordinate, MapTile> originalMap;
 
     // Graph which contains contents of map
-    private Map<Node, MapTile> graph;
+    private static Map<Node, MapTile> graph;
 
-    // Node list to keep track of all nodes during neighbour delegation
-
-    private ArrayList<Node> nodeList;
+    // Coordinate to Node HashMap
+    private static ArrayList<Node> nodeList;
 
     // Static block to get all the map tiles from before
     static {
         // Get Initial Map from World Package
-        HashMap<Coordinate, MapTile> originalMap;
         originalMap = World.getMap();
+
+        // Initialse node list
+        nodeList = new ArrayList<>();
+
+        graph = new HashMap<>();
     }
 
 
@@ -62,10 +64,18 @@ public class Graph {
      * Returns the Graph Instant Structure from data
      * @return The Singleton Graph Instantiation
      */
-    public static Graph createGraph() {
+    public static Graph getGraph() {
 
         // Return GRAPH_INSTANCE
         return GRAPH_INSTANCE;
+    }
+
+    /**
+     * Return hashmap graph of nodes
+     * @return The hashmap graph =
+     */
+    public static Map<Node, MapTile> getGraphNodes() {
+        return graph;
     }
 
 
@@ -103,6 +113,16 @@ public class Graph {
         }
     }
 
+    public Node getDestination(Map<Node, MapTile> graph) {
+        for (Map.Entry<Node, MapTile> entry: graph.entrySet()) {
+            if (entry.getValue().isType(MapTile.Type.FINISH)) {
+                return entry.getKey();
+            }
+        }
+
+        return null;
+    }
+
 
     /**
      * Setting the weight of the Node object depending on the tile type
@@ -128,15 +148,13 @@ public class Graph {
         // If it is not a trap
         else if (tile.isType(MapTile.Type.FINISH)) {
             node.setWeight(FINISH);
-        }
-
-        else if (tile.isType(MapTile.Type.START)) {
-            node.setWeight(START);
+        } else if (tile.isType(MapTile.Type.WALL)){
+            node.setWeight((int)Double.POSITIVE_INFINITY);
+        }else if (tile.isType(MapTile.Type.START)) {
+            node.setWeight(DEFAULT);
+        } else {
+            node.setWeight(DEFAULT);
         }
     }
 
-    // Getter for graph
-    public Map<Node, MapTile> getGraph() {
-        return graph;
-    }
 }
