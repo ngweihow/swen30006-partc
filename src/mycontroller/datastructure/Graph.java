@@ -29,9 +29,10 @@ public class Graph {
     private ArrayList<Node> nodeList;
 
     // Singleton constructor (Package private)
-    Graph(HashMap<Coordinate, MapTile> map) {
+    public Graph(HashMap<Coordinate, MapTile> map) {
         this.map = map;
         this.graph = createGraph();
+        setAllNodeNeighbours();
     }
 
     /**

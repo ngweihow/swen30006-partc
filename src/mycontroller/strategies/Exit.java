@@ -14,7 +14,7 @@ public class Exit implements ITraversalStrategy {
     private Map<Node, MapTile> graph;
     private Node destination;
 
-    public Exit(CarController controller, HashMap<Node, MapTile> graph) {
+    public Exit(HashMap<Node, MapTile> graph) {
         this.graph = graph;
         this.destination = getDestination(graph);
     }
