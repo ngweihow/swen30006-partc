@@ -101,10 +101,30 @@ public class AvoidLava implements ITraversalTactic {
     }
 
 
-
-
+    /**
+     * Returns the next node where to travel to
+     * @return Next node to travel to 
+     */
     @Override
-    public void travel() {
+    public Node travel() {
+        // Seek which direction to travel to from the currentNode the car is on
+        WorldSpatial.Direction direction = scanForLava(this.source);
 
+        // Return neighbour
+        switch (direction) {
+            case NORTH:
+                return this.source.getNorthNode();
+
+            case EAST:
+                return this.source.getEastNode();
+
+            case SOUTH:
+                return this.source.getSouthNode();
+
+            case WEST:
+                return this.source.getWestNode();
+        }
+
+        return null;
     }
 }

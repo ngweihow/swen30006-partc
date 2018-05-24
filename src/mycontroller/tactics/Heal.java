@@ -17,8 +17,9 @@ public class Heal implements ITraversalTactic {
     }
 
     @Override
-    public void travel() {
+    public Node travel() {
 
+        return null;
     }
 
 

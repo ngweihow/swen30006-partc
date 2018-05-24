@@ -1,7 +1,9 @@
 package mycontroller.tactics;
 
+import mycontroller.datastructure.Node;
+
 public interface ITraversalTactic {
 
-    public void travel();
+    public Node travel();
 
 }
