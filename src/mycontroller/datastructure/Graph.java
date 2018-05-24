@@ -29,8 +29,8 @@ public class Graph {
     // Graph which contains contents of map
     private Map<Node, MapTile> graph;
 
-    // Coordinate to Node HashMap
-    private HashMap<Coordinate, Node> coordMap;
+    // Node list to keep track of all nodes during neighbour delegation
+
     private ArrayList<Node> nodeList;
 
     // Static block to get all the map tiles from before
@@ -90,12 +90,12 @@ public class Graph {
 
                 // Setting the SouthNode for this node
                 if((node.getX() == otherNode.getX()) && ((node.getY()- 1) == otherNode.getY())) {
-                    node.setNorthNode(otherNode);
+                    node.setSouthNode(otherNode);
                 }
 
                 // Setting the WestNode for this node
                 if((node.getY() == otherNode.getY()) && ((node.getX()- 1) == otherNode.getX())) {
-                    node.setEastNode(otherNode);
+                    node.setWestNode(otherNode);
                 }
 
             }

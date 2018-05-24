@@ -32,12 +32,12 @@ public class Exit implements ITraversalStrategy {
     /**
      * Takes the current Node and finds the the optimal traversal to it
      *
-     * @param source The source Node from where traversing begins
+     * @param graph The HashMap from the Graph class
      * @return The destination the strategy wants to end up in
      */
     @Override
-    public boolean findDestination(Map<Node, MapTile> graph, Node source) {
-        PathFinder pathFinder = new PathFinder(graph, source, destination);
+    public boolean findDestination(Map<Node, MapTile> graph) {
+        PathFinder pathFinder = new PathFinder(graph, null, destination);
         Stack<Node> solution = pathFinder.findShortestPath();
 
 
