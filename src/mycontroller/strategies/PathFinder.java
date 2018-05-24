@@ -8,11 +8,11 @@ import java.util.*;
 
 public class PathFinder {
     // Constructor variables
-    private Graph graph;
+    private Map<Node, MapTile> graph;
     private Node source;
     private Node destination;
 
-    public PathFinder(Graph graph, Node source, Node destination) {
+    public PathFinder(Map<Node, MapTile> graph, Node source, Node destination) {
         this.graph = graph;
         this.source = source;
         this.destination = destination;
@@ -22,7 +22,7 @@ public class PathFinder {
      * Finds shortest path in graph.
      * @return stack containing shortest path
      */
-    private Stack<Node> findShortestPath() {
+    public Stack<Node> findShortestPath() {
         Node current;
         Stack<Node> shortest = new Stack<>();
         Set<Node> unvisited = new HashSet<>();
@@ -30,7 +30,7 @@ public class PathFinder {
         Map<Node, Node> prev = new HashMap<>();
 
         // Initialise data structures for dijkstra's
-        for (Map.Entry<Node, MapTile> entry: graph.getGraph().entrySet()) {
+        for (Map.Entry<Node, MapTile> entry: graph.entrySet()) {
             dist.put(entry.getKey(), Double.POSITIVE_INFINITY);
             prev.put(entry.getKey(), null);
             unvisited.add(entry.getKey());

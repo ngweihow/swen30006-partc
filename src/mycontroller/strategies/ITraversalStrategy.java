@@ -1,7 +1,9 @@
 package mycontroller.strategies;
 
-import mycontroller.datastructure.Graph;
 import mycontroller.datastructure.Node;
+import tiles.MapTile;
+
+import java.util.Map;
 
 public interface ITraversalStrategy {
 
@@ -11,7 +13,7 @@ public interface ITraversalStrategy {
      * @param source The source Node from where traversing begins
      * @return The destination the strategy wants to end up in
      */
-    boolean findDestination(Graph graph, Node source);
+    boolean findDestination(Map<Node, MapTile> graph, Node source);
 
 
 }
