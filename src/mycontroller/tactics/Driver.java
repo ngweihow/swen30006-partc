@@ -5,11 +5,12 @@ import mycontroller.datastructure.Node;
 import tiles.LavaTrap;
 import tiles.MapTile;
 import utilities.Coordinate;
-import world.World;
 import world.WorldSpatial;
 
 import java.util.HashMap;
 import java.util.Stack;
+
+import mycontroller.datastructure.Directions;
 
 public class Driver {
     // Car properties
@@ -17,7 +18,7 @@ public class Driver {
     private Stack<Node> solution;
     Coordinate destination;
     private static final int CAR_SPEED = 4;
-    private static final int DISTANCE_FROM_WALL = 4;
+    private static int DISTANCE_FROM_WALL = 4;
 
     // Car Physics
     WorldSpatial.Direction currentOrientation;
@@ -200,16 +201,65 @@ public class Driver {
         }
     }
 
-    private boolean checkNorth(HashMap<Coordinate, MapTile> currentView) {
+    private boolean checkDirection(HashMap<Coordinate, MapTile> currentView, Directions direction) {
         Coordinate currentPosition = new Coordinate(controller.getPosition());
         for (int i = 0; i < DISTANCE_FROM_WALL; i++) {
-            MapTile tile = currentView.get(new Coordinate(currentPosition.x, currentPosition.y+i));
+            MapTile tile = null;
+            switch(direction) {
+                case NORTH:
+                    tile = currentView.get(new Coordinate(currentPosition.x, currentPosition.y+i));
+                    break;
+                case SOUTH:
+                    tile = currentView.get(new Coordinate(currentPosition.x, currentPosition.y-i));
+                    break;
+                case EAST:
+                    tile = currentView.get(new Coordinate(currentPosition.x+i, currentPosition.y));
+                    break;
+                case WEST:
+                    tile = currentView.get(new Coordinate(currentPosition.x-i, currentPosition.y));
+                    break;
+            }
             if (tile.isType(MapTile.Type.WALL) || tile instanceof LavaTrap) {
                 return true;
             }
         }
 
         return false;
+    }
+
+    private boolean checkTileAhead(WorldSpatial.Direction orientation,
+                                   HashMap<Coordinate, MapTile> currentView,
+                                   float speed) {
+
+        if (speed <= 1) {
+            DISTANCE_FROM_WALL = 1;
+        } else if (speed > 1) {
+            DISTANCE_FROM_WALL = 2;
+        } else if (speed > 2) {
+            DISTANCE_FROM_WALL = 3;
+        } else {
+            DISTANCE_FROM_WALL = 4;
+        }
+
+        Directions direction = null;
+        switch (orientation) {
+            case NORTH:
+                direction = Directions.NORTH;
+                break;
+            case SOUTH:
+                direction = Directions.SOUTH;
+                break;
+            case EAST:
+                direction = Directions.EAST;
+                break;
+            case WEST:
+                direction = Directions.WEST;
+                break;
+
+        }
+
+        return checkDirection(currentView, direction);
+
     }
 
 }
