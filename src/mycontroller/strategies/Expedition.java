@@ -22,7 +22,7 @@ public class Expedition implements ITraversalStrategy {
     @Override
     public boolean findDestination(Graph graph, Node source) {
 
-        PathFinder pathFinder = new PathFinder(null, source, null);
+        PathFinder pathFinder = new PathFinder(graph, source, null);
 
 
         return false;

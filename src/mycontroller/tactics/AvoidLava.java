@@ -5,7 +5,9 @@ import world.WorldSpatial;
 
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
+import java.util.List;
 
 public class AvoidLava implements ITraversalTactic {
 
@@ -25,11 +27,11 @@ public class AvoidLava implements ITraversalTactic {
     public WorldSpatial.Direction scanForLava(Node node) {
 
         // Create an ArrayList to check all the directions
-        ArrayList<Integer> directionWeights = new ArrayList<>();
-        directionWeights.add(seekDirection(WorldSpatial.Direction.NORTH, RANGE, 0,node));
-        directionWeights.add(seekDirection(WorldSpatial.Direction.EAST, RANGE, 0,node));
-        directionWeights.add(seekDirection(WorldSpatial.Direction.SOUTH, RANGE, 0,node));
-        directionWeights.add(seekDirection(WorldSpatial.Direction.WEST, RANGE, 0,node));
+        List<Integer> directionWeights = new ArrayList<>(Arrays.asList(
+                seekDirection(WorldSpatial.Direction.NORTH, RANGE, 0,node),
+                seekDirection(WorldSpatial.Direction.EAST, RANGE, 0,node),
+                seekDirection(WorldSpatial.Direction.SOUTH, RANGE, 0,node),
+                seekDirection(WorldSpatial.Direction.WEST, RANGE, 0,node)));
 
         // Check for which direction has the 'lightest' weight and decide to go to it
         int cheapestDirection = directionWeights.indexOf(Collections.min(directionWeights));

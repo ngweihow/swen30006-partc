@@ -14,7 +14,6 @@ public class Graph {
     private static final int START=10;
     private static final int LAVA_TRAP=1000;
     private static final int HEALTH_TRAP=5;
-    private static final int TILE_NOT_FOUND=-1;
 
     private static final String LAVA = "lava";
     private static final String HEALTH = "health";
@@ -47,7 +46,7 @@ public class Graph {
 
             // Get the key for the respective node and hash it into the graph
             Node newNode = new Node(entry.getKey());
-            newNode.setWeight(weight(entry.getValue()));
+            addWeight(entry.getValue(), newNode);
             graph.put(newNode, entry.getValue());
 
             // Hash node to the coordMap using coord as key
@@ -63,7 +62,6 @@ public class Graph {
      * Setting all the neighbour nodes to a node
      */
     public void setAllNodeNeighbours() {
-
 
         // Go over each coordinate in the coordinate hash and assign
         for(Node node: nodeList) {
@@ -98,9 +96,8 @@ public class Graph {
     /**
      * Setting the weight of the Node object depending on the tile type
      * @param tile
-     * @return weight of tile
      */
-    public int weight(MapTile tile) {
+    private void addWeight(MapTile tile, Node node) {
 
         // Only assign tiles new weights when
         if (tile.isType(MapTile.Type.TRAP)) {
@@ -108,25 +105,23 @@ public class Graph {
 
             // For each trap tile check the type for it
             if (trapTile.getTrap().equals(HEALTH)) {
-                return HEALTH_TRAP;
+                node.setWeight(HEALTH_TRAP);
             }
 
             else if (trapTile.getTrap().equals(LAVA)) {
-                return LAVA_TRAP;
+                node.setWeight(LAVA_TRAP);
             }
 
         }
 
         // If it is not a trap
         else if (tile.isType(MapTile.Type.FINISH)) {
-            return FINISH;
+            node.setWeight(FINISH);
         }
 
         else if (tile.isType(MapTile.Type.START)) {
-            return START;
+            node.setWeight(START);
         }
-
-        return TILE_NOT_FOUND;
     }
 
     // Get graph
