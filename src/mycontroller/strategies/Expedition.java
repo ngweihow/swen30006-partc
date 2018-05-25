@@ -15,7 +15,6 @@ import java.util.Stack;
 
 public class Expedition implements ITraversalStrategy {
 
-
     /**
      * Takes the current Node and finds the the optimal traversal to it
      * @param graph The HashMap from the Graph class

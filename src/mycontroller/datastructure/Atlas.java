@@ -42,11 +42,11 @@ public class Atlas {
         // Make sure that each Node in the Graph is connected to their neighbours
         graph.setAllNodeNeighbours();
 
-        /*
         // Initialise the strategy factory
         strategyFactory = new StrategyFactory();
 
         // Generate the strategy list to use for the composite factory
+        compositionList = new ArrayList<>();
         for(String currentStrategy: strategyList) {
             // Call the Factory method to generate the composition
             compositionList.add(strategyFactory.createStrategy(currentStrategy));
@@ -54,7 +54,6 @@ public class Atlas {
 
         // Initialise the composite strategy used
         strategyUsed = new CompositeStrategy(compositionList);
-        */
 
         this.strategyExit = new Exit(graph.getGraphNodes());
         Stack<Node> solution = strategyExit.findDestination(graph.getGraphNodes(), controller);
@@ -66,43 +65,5 @@ public class Atlas {
     public Driver getDriver() {
         return driver;
     }
-
-    /**
-     * Initialises an Atlas where the one Simulation is run
-     */
-    //public void initAtlas(MyAIController controller) {
-
-
-        // Initialise Graph with Singleton call
-        //Graph graph = Graph.getGraph();
-
-        // Make sure that each Node in the Graph is connected to their neighbours
-        //graph.setAllNodeNeighbours();
-
-
-        // Initialise the strategy factory
-        //strategyFactory = new StrategyFactory();
-
-        // Generate the strategy list to use for the composite factory
-        //for(String currentStrategy: strategyList) {
-            // Call the Factory method to generate the composition
-            //compositionList.add(strategyFactory.createStrategy(currentStrategy));
-        //}
-
-        // Initialise the composite strategy used
-        //strategyUsed = new CompositeStrategy(compositionList);
-
-
-        //strategyExit = new Exit(graph.getGraphNodes());
-        //Stack<Node> solution = strategyExit.findDestination(graph.getGraphNodes(), controller);
-
-        // Get Driver
-        //Driver driver = new Driver(controller, solution);
-
-    //}
-
-
-
-
 
 }

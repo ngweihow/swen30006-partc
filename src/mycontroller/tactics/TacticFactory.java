@@ -1,13 +1,27 @@
 package mycontroller.tactics;
 
+import mycontroller.datastructure.Node;
+import tiles.MapTile;
+
+import java.util.Map;
+
 public class TacticFactory {
+    private Node currentNode;
+    private Map<Node, MapTile> graph;
+    private int currentKey;
+
+    public TacticFactory(Node currentNode, Map<Node, MapTile> graph, int currentKey) {
+        this.currentNode = currentNode;
+        this.graph = graph;
+        this.currentKey = currentKey;
+    }
 
     /**
      * Method to create tactics used for immediate traversal
      * @param tacticName
      * @return a new Tactic object
      */
-    public static ITraversalTactic createTactic(String tacticName) {
+    public ITraversalTactic createTactic(String tacticName) {
 
 
         // Return null if invalid output
@@ -17,19 +31,18 @@ public class TacticFactory {
 
         // Heal tactic
         if(tacticName.equals("Heal")) {
-            return new Heal(null);
+            return new Heal(currentNode);
         }
 
         // RetrieveKey tactic
         else if(tacticName.equals("RetrieveKey")) {
-            return new RetrieveKey(null, null, 1);
+            return new RetrieveKey(currentNode, graph, currentKey);
         }
 
         // AvoidLava Tactic
         else if(tacticName.equals("AvoidLava")) {
-            return new AvoidLava(null);
+            return new AvoidLava(currentNode);
         }
-
 
         return null;
     }
