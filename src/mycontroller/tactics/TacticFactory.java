@@ -22,7 +22,7 @@ public class TacticFactory {
 
         // RetrieveKey tactic
         else if(tacticName.equals("RetrieveKey")) {
-            return new RetrieveKey();
+            return new RetrieveKey(null, null, 1);
         }
 
         // AvoidLava Tactic
