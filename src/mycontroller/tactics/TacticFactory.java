@@ -6,14 +6,9 @@ import tiles.MapTile;
 import java.util.Map;
 
 public class TacticFactory {
-    private Node currentNode;
-    private Map<Node, MapTile> graph;
-    private int currentKey;
 
-    public TacticFactory(Node currentNode, Map<Node, MapTile> graph, int currentKey) {
-        this.currentNode = currentNode;
-        this.graph = graph;
-        this.currentKey = currentKey;
+    public TacticFactory() {
+
     }
 
     /**
@@ -21,7 +16,7 @@ public class TacticFactory {
      * @param tacticName
      * @return a new Tactic object
      */
-    public ITraversalTactic createTactic(String tacticName) {
+    public ITraversalTactic createTactic(String tacticName, Node currentNode, Map<Node, MapTile> graph, int currentKey) {
         // Return null if invalid output
         if(tacticName == null) {
             return null;
