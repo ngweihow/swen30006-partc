@@ -11,32 +11,57 @@ import java.util.HashMap;
 import java.util.Stack;
 
 public class Driver {
-    // Car properties
+    // Controller and solution
     private CarController controller;
     private Stack<Node> solution;
+
+    // Variables needed for car physics
     private static final int CAR_SPEED = 4;
     private static int wallSensitivity = 4;
-
-    Node nextTile;
-
-    private boolean isFollowingPath = false;
-    private WorldSpatial.RelativeDirection lastTurnDirection = null; // Shows the last turn direction the car takes.
-    private boolean isTurningLeft = false;
-    private boolean isTurningRight = false;
-    private WorldSpatial.Direction previousState = null; // Keeps track of the previous state
     private static final int EAST_THRESHOLD = 3;
+    private static final double SPEED_COEFFICIENT = 0.5;
+
+    // Get current and next tile
+    private Node currentTile;
+    private Node nextTile;
+
+    // Direction and path properties
+    private boolean isFollowingPath;
+
+    // Shows the last turn direction the car takes.
+    private WorldSpatial.RelativeDirection lastTurnDirection;
+    private boolean isTurningLeft;
+    private boolean isTurningRight;
+
+    // Keeps track of the previous state
+    private WorldSpatial.Direction previousState;
 
     public Driver(CarController controller, Stack<Node> solution) {
         this.controller = controller;
         this.solution = solution;
-        nextTile = solution.pop();
+
+        this.nextTile = solution.pop();
+        this.currentTile = null;
+
+        this.isFollowingPath = false;
+        this.lastTurnDirection = null;
+        this.isTurningLeft = false;
+        this.isTurningRight = false;
+        this.previousState = null;
     }
 
+    /**
+     * Drives car to destination
+     * @param delta speed of the car
+     */
     public void driveCar(float delta) {
         HashMap<Coordinate, MapTile> currentView = controller.getView();
 
         // First check if state has changed
         checkStateChange();
+
+        // Get the current tile
+        currentTile = new Node(new Coordinate(controller.getPosition()));
 
         // If not following path
         if (!isFollowingPath) {
@@ -45,9 +70,7 @@ public class Driver {
             if (controller.getSpeed() < CAR_SPEED) {
                 controller.applyForwardAcceleration();
             }
-            lastTurnDirection = getDirection(controller.getOrientation(),
-                                             new Node(new Coordinate(controller.getPosition())),
-                                             nextTile);
+            lastTurnDirection = getDirection(controller.getOrientation(), currentTile, nextTile);
 
             // Turn left is last turn direction is left
             if (lastTurnDirection == WorldSpatial.RelativeDirection.LEFT) {
@@ -65,14 +88,11 @@ public class Driver {
         // We are defiantly following the path
         } else {
 
-            // readadjust to suite last turn direction
+            // readjust to suite last turn direction
             readjust(lastTurnDirection, delta);
 
-            // Get temporary current position
-            Node currentPosition = new Node(new Coordinate(controller.getPosition()));
-
             // If position is the same as next tile
-            if (currentPosition.checkPosition(nextTile)) {
+            if (currentTile.checkPosition(nextTile)) {
                 if (!solution.isEmpty()) {
                     nextTile = solution.pop();
                 }
@@ -82,12 +102,13 @@ public class Driver {
             if (isTurningLeft || isTurningRight) {
 
                 // If we are going to fast
-                if(controller.getSpeed() > 0.5) {
+                if(controller.getSpeed() > SPEED_COEFFICIENT) {
 
                     // Reverse car
                     controller.applyReverseAcceleration();
 
                     // Left turn becomes right turn
+                    // Switched because car goes diagonal otherwise
                     if(isTurningLeft) {
                         applyRightTurn(controller.getOrientation(), delta);
 
@@ -103,36 +124,44 @@ public class Driver {
                     controller.applyForwardAcceleration();
 
                     // Turn normally
-                    if(isTurningRight) {
-                        applyRightTurn(controller.getOrientation(), delta);
-                    } else if (isTurningLeft) {
+                    if(isTurningLeft) {
                         applyLeftTurn(controller.getOrientation(), delta);
+                    } else if (isTurningRight) {
+                        applyRightTurn(controller.getOrientation(), delta);
                     }
                 }
             } else {
 
-                //Going straight ahead, check tiles ahead and slow down if there is an wall/trap ahead
-                if(controller.getSpeed() < 5 && !checkTileAhead(controller.getOrientation(), currentView, controller.getSpeed())){
+                //Going straight ahead, check tiles ahead and slow down if there is a wall/trap ahead
+                if(controller.getSpeed() < CAR_SPEED && !checkTileAhead(controller.getOrientation(), currentView, controller.getSpeed())){
                     controller.applyForwardAcceleration();
                 }
 
                 //Get the relative direction of the next tile. If no turn, keep going straight
-                lastTurnDirection = getDirection(controller.getOrientation(), new Node(new Coordinate(controller.getPosition())), nextTile);
+                lastTurnDirection = getDirection(controller.getOrientation(), currentTile, nextTile);
                 if(lastTurnDirection == WorldSpatial.RelativeDirection.LEFT){
                     applyLeftTurn(controller.getOrientation(),delta);
-                    isTurningLeft = true;
+                    setTurnLeft(true);
                 } else if(lastTurnDirection == WorldSpatial.RelativeDirection.RIGHT) {
                     applyRightTurn(controller.getOrientation(),delta);
-                    isTurningRight = true;
+                    setTurnRight(true);
                 } else {
-                    isTurningLeft = false;
-                    isTurningRight = false;
+                    setTurnLeft(false);
+                    setTurnRight(false);
                 }
             }
 
 
         }
 
+    }
+
+    private void setTurnRight(boolean newTurn) {
+        this.isTurningRight = newTurn;
+    }
+
+    private void setTurnLeft(boolean newTurn) {
+        this.isTurningLeft = newTurn;
     }
 
     /**
@@ -349,13 +378,10 @@ public class Driver {
     }
 
     /**
-     * Check if you have a wall or trap in front of you!
-     * @param orientation the orientation we are in based on WorldSpatial
-     * @param currentView what the car can currently see
-     * @return boolean indicating if wall or lava is ahead
+     * Assigns new wall sensitive depending on speed of car
+     * @param speed the speed of the car
      */
-    //WallSensitivity changes based on how fast the car is currently moving
-    private boolean checkTileAhead(WorldSpatial.Direction orientation, HashMap<Coordinate, MapTile> currentView, float speed){
+    private void assignWallSensitivity(float speed) {
         if(speed <= 1) {
             wallSensitivity = 1;
         } else if(speed > 1) {
@@ -365,6 +391,19 @@ public class Driver {
         } else {
             wallSensitivity = 4;
         }
+    }
+
+    /**
+     * Check if you have a wall or trap in front of you!
+     * @param orientation the orientation we are in based on WorldSpatial
+     * @param currentView what the car can currently see
+     * @return boolean indicating if wall or lava is ahead
+     */
+    //WallSensitivity changes based on how fast the car is currently moving
+    private boolean checkTileAhead(WorldSpatial.Direction orientation, HashMap<Coordinate, MapTile> currentView, float speed){
+        // First assign wall sensitivity
+        assignWallSensitivity(speed);
+
         switch(orientation){
             case EAST:
                 return checkEast(currentView);
