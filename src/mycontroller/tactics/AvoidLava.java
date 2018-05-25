@@ -99,7 +99,6 @@ public class AvoidLava implements ITraversalTactic {
         return 0;
     }
 
-
     /**
      * Returns the next node where to travel to
      * @return Next node to travel to
