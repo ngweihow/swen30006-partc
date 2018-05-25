@@ -35,6 +35,17 @@ public class CompositeStrategy implements ITraversalStrategy {
         return strategiesOrder;
     }
 
+    /**
+     * Get the Destination for the finish node.
+     * @param graph HashMap reference for getting tiles.
+     * @return Destination Node.
+     */
+    public Node getDestination(Map<Node, MapTile> graph) {
+        /* Use tactic lists here*/
+
+        return null;
+    }
+
     public void setStrategiesOrder(ArrayList<ITraversalStrategy> strategiesOrder) {
         this.strategiesOrder = strategiesOrder;
     }

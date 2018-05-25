@@ -28,6 +28,7 @@ public class Conquest implements ITraversalStrategy {
      * @return Destination Node.
      */
     public Node getDestination(Map<Node, MapTile> graph) {
+
         /* Use tactic lists here*/
 
         return null;
