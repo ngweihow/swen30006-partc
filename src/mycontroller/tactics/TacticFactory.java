@@ -20,9 +20,9 @@ public class TacticFactory {
             return new Heal();
         }
 
-        // RetrieveName tactic
-        else if(tacticName.equals("RetrieveName")) {
-            return new RetrieveName();
+        // RetrieveKey tactic
+        else if(tacticName.equals("RetrieveKey")) {
+            return new RetrieveKey();
         }
 
         // AvoidLava Tactic
