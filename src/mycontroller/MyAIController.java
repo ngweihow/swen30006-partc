@@ -41,8 +41,8 @@ public class MyAIController extends AIController {
     public MyAIController(Car car) {
         super(car);
 
-        this.atlas = new Atlas();
-        atlas.initAtlas(this);
+        this.atlas = new Atlas(this);
+        driver = atlas.getDriver();
 
     }
 
