@@ -1,6 +1,7 @@
 package mycontroller;
 
 import controller.AIController;
+import controller.CarController;
 import mycontroller.datastructure.Atlas;
 import mycontroller.datastructure.Graph;
 import mycontroller.datastructure.Node;
@@ -22,7 +23,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Stack;
 
-public class MyAIController extends AIController {
+public class MyAIController extends CarController {
     private Driver driver;
 
     private Atlas atlas;
