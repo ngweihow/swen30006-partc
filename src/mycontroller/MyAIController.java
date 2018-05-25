@@ -23,17 +23,6 @@ import java.util.HashMap;
 import java.util.Stack;
 
 public class MyAIController extends AIController {
-    private HashMap<Coordinate, MapTile> map;
-
-    private Graph graph;
-
-    private Node source;
-    private Node destination;
-
-    private PathFinder pathFinder;
-
-    private Stack<Node> solution;
-
     private Driver driver;
 
     private Atlas atlas;
