@@ -16,5 +16,11 @@ public interface ITraversalStrategy {
      */
     Stack<Node> findDestination(Map<Node, MapTile> graph, MyAIController controller);
 
+    /**
+     * Returns the calculated Node to travel to
+     * @param graph The HashMap of Nodes to MapTiles with assisting in MapTile querying
+     * @return The destination Node
+     */
+    Node getDestination(Map<Node, MapTile> graph);
 
 }
