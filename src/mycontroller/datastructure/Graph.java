@@ -23,8 +23,7 @@ public class Graph {
     private static final String LAVA = "lava";
     private static final String HEALTH = "health";
 
-    // Map of world
-    private static HashMap<Coordinate, MapTile> originalMap;
+
 
     // Graph which contains contents of map
     private static Map<Node, MapTile> graph;
@@ -38,6 +37,9 @@ public class Graph {
 
     // Singleton constructor (Package private)
     Graph() {
+
+        // Variable for the original map from getMap
+        HashMap<Coordinate, MapTile> originalMap;
 
         // Get Initial Map from World Package
         originalMap = World.getMap();
