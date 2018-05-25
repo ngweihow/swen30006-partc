@@ -46,8 +46,8 @@ public class Exit implements ITraversalStrategy {
      */
     @Override
     public Stack<Node> findDestination(Map<Node, MapTile> graph, MyAIController controller) {
-        PathFinder pathFinder = new PathFinder(graph, new Node(new Coordinate(controller.getPosition())), destination);
-        Stack<Node> solution = pathFinder.findShortestPath();
+        PathFinder pathFinder = new PathFinder(graph);
+        Stack<Node> solution = pathFinder.findShortestPath(new Node(new Coordinate(controller.getPosition())), destination);
         return solution;
     }
 }

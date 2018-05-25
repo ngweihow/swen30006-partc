@@ -9,20 +9,16 @@ import java.util.*;
 public class PathFinder {
     // Constructor variables
     private Map<Node, MapTile> graph;
-    private Node source;
-    private Node destination;
 
-    public PathFinder(Map<Node, MapTile> graph, Node source, Node destination) {
+    public PathFinder(Map<Node, MapTile> graph) {
         this.graph = graph;
-        this.source = source;
-        this.destination = destination;
     }
 
     /**
      * Finds shortest path in graph.
      * @return stack containing shortest path
      */
-    public Stack<Node> findShortestPath() {
+    public Stack<Node> findShortestPath(Node source, Node destination) {
         Node current;
         Stack<Node> shortest = new Stack<>();
         Set<Node> unvisited = new HashSet<>();

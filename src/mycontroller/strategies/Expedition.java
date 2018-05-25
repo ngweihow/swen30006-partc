@@ -47,7 +47,7 @@ public class Expedition implements ITraversalStrategy {
      */
     @Override
     public Stack<Node> findDestination(Map<Node, MapTile> graph, MyAIController controller) {
-        PathFinder pathFinder = new PathFinder(graph, null, null);
+        PathFinder pathFinder = new PathFinder(graph);
         return null;
     }
 }
