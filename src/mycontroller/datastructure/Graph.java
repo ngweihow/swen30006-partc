@@ -5,6 +5,7 @@ import tiles.TrapTile;
 import utilities.Coordinate;
 import world.World;
 
+import javax.xml.bind.annotation.XmlType;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -12,11 +13,11 @@ import java.util.Map;
 public class Graph {
 
     // Instantiation of the static Singleton Class Graph
-    private static Graph GRAPH_INSTANCE = new Graph();
+    private static final Graph GRAPH_INSTANCE = new Graph();
 
     private static final int FINISH = 0;
     private static final int DEFAULT = 1;
-    private static final int LAVA_TRAP = World.MAP_HEIGHT * World.MAP_WIDTH;
+    private static final int LAVA_TRAP;
     private static final int HEALTH_TRAP = 5;
 
     private static final String LAVA = "lava";
@@ -31,6 +32,9 @@ public class Graph {
     // Coordinate to Node HashMap
     private static ArrayList<Node> nodeList;
 
+    static {
+        LAVA_TRAP = World.MAP_HEIGHT * World.MAP_WIDTH;
+    }
 
     // Singleton constructor (Package private)
     Graph() {
