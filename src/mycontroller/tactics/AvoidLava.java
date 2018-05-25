@@ -11,7 +11,6 @@ import java.util.List;
 
 public class AvoidLava implements ITraversalTactic {
 
-    private ArrayList<Node> radius;
     private Node source;
     private static final int RANGE = 2;
 
@@ -35,6 +34,7 @@ public class AvoidLava implements ITraversalTactic {
 
         // Check for which direction has the 'lightest' weight and decide to go to it
         int cheapestDirection = directionWeights.indexOf(Collections.min(directionWeights));
+
         // Select the cheapest and return that direction
         switch(cheapestDirection) {
             case 0:
@@ -98,7 +98,6 @@ public class AvoidLava implements ITraversalTactic {
 
         return 0;
     }
-
 
     /**
      * Returns the next node where to travel to

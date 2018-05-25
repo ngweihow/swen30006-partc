@@ -17,7 +17,7 @@ public class TacticFactory {
 
         // Heal tactic
         if(tacticName.equals("Heal")) {
-            return new Heal();
+            return new Heal(null);
         }
 
         // RetrieveKey tactic
