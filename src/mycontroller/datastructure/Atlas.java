@@ -43,7 +43,7 @@ public class Atlas {
         graph.setAllNodeNeighbours();
 
         // Initialise the strategy factory
-        strategyFactory = new StrategyFactory();
+        strategyFactory = new StrategyFactory(graph.getGraphNodes());
 
         // Generate the strategy list to use for the composite factory
         compositionList = new ArrayList<>();

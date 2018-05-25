@@ -22,8 +22,6 @@ public class TacticFactory {
      * @return a new Tactic object
      */
     public ITraversalTactic createTactic(String tacticName) {
-
-
         // Return null if invalid output
         if(tacticName == null) {
             return null;
