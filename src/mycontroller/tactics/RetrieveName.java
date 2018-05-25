@@ -13,7 +13,7 @@ public class RetrieveName implements ITraversalTactic {
 
     }
 
-    public boolean tacticalBehaviour(HashMap<Node, MapTile> currentView, Coordinate coordinate) {
+    public boolean tacticalBehaviour(HashMap<Node, MapTile> currentView, Node node) {
         return false;
     }
 
