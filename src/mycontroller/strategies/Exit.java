@@ -10,16 +10,22 @@ import java.util.Map;
 import java.util.Stack;
 
 public class Exit implements ITraversalStrategy {
+
+    // Initialising the Node and referral graph
     private Map<Node, MapTile> graph;
     private Node destination;
+
 
     public Exit(Map<Node, MapTile> graph) {
         this.graph = graph;
         this.destination = getDestination(graph);
-
-
     }
 
+    /**
+     * Get the Destination for the finish node.
+     * @param graph HashMap reference for getting tiles.
+     * @return Destination Node.
+     */
     public Node getDestination(Map<Node, MapTile> graph) {
         for (Map.Entry<Node, MapTile> entry: graph.entrySet()) {
             if (entry.getValue().isType(MapTile.Type.FINISH)) {
