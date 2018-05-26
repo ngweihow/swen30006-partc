@@ -13,7 +13,6 @@ import java.util.Map;
 
 public class RetrieveKey implements ITraversalTactic {
 
-    private ArrayList<Node> radius;
     private Node source;
     private static final int RANGE = 9;
     private Map<Node, MapTile> graph;
