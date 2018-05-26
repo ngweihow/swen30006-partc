@@ -1,15 +1,9 @@
 package mycontroller.tactics;
 
-import mycontroller.datastructure.Node;
-import tiles.MapTile;
-
-import java.util.Map;
-
 public class TacticFactory {
-
-    public TacticFactory() {
-
-    }
+    private static final String HEAL = "Heal";
+    private static final String RETRIEVE_KEY = "RetrieveKey";
+    private static final String AVOID_LAVA = "AvoidLava";
 
     /**
      * Method to create tactics used for immediate traversal
@@ -23,17 +17,17 @@ public class TacticFactory {
         }
 
         // Heal tactic
-        if(tacticName.equals("Heal")) {
+        if(tacticName.equals(HEAL)) {
             return new Heal();
         }
 
         // RetrieveKey tactic
-        else if(tacticName.equals("RetrieveKey")) {
+        else if(tacticName.equals(RETRIEVE_KEY)) {
             return new RetrieveKey(currentKey);
         }
 
         // AvoidLava Tactic
-        else if(tacticName.equals("AvoidLava")) {
+        else if(tacticName.equals(AVOID_LAVA)) {
             return new AvoidLava();
         }
 
