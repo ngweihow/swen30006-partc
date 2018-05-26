@@ -15,13 +15,10 @@ public class Sweep implements ITraversalStrategy {
 
     // Initialising the Node and referral graph
     private Map<Node, MapTile> graph;
-    private Node destination;
     private ArrayList<ITraversalTactic> tactics;
-
 
     public Sweep(Map<Node, MapTile> graph) {
         this.graph = graph;
-        this.destination = getDestination(graph);
     }
 
     /**
@@ -29,6 +26,7 @@ public class Sweep implements ITraversalStrategy {
      * @param graph HashMap reference for getting tiles.
      * @return Destination Node.
      */
+    @Override
     public Node getDestination(Map<Node, MapTile> graph) {
         /* Use tactic lists here*/
 

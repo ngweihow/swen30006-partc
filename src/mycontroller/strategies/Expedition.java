@@ -19,13 +19,11 @@ public class Expedition implements ITraversalStrategy {
 
     // Initialising the Node and referral graph
     private Map<Node, MapTile> graph;
-    private Node destination;
     private ArrayList<ITraversalTactic> tactics;
 
 
     public Expedition(Map<Node, MapTile> graph) {
         this.graph = graph;
-        this.destination = getDestination(graph);
     }
 
 
