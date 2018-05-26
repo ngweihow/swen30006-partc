@@ -113,17 +113,7 @@ public class Graph {
 
         }
     }
-
-    public Node getDestination(Map<Node, MapTile> graph) {
-        for (Map.Entry<Node, MapTile> entry: graph.entrySet()) {
-            if (entry.getValue().isType(MapTile.Type.FINISH)) {
-                return entry.getKey();
-            }
-        }
-
-        return null;
-    }
-
+    
 
     /**
      * Setting the weight of the Node object depending on the tile type
