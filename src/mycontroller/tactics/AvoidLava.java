@@ -1,13 +1,12 @@
 package mycontroller.tactics;
 
 import mycontroller.datastructure.Node;
+import tiles.MapTile;
+import utilities.Coordinate;
 import world.WorldSpatial;
 
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 public class AvoidLava implements ITraversalTactic {
 
@@ -104,7 +103,7 @@ public class AvoidLava implements ITraversalTactic {
      * @return Next node to travel to
      */
     @Override
-    public Node travel() {
+    public Node travel(HashMap<Coordinate, MapTile> currentView ) {
         // Seek which direction to travel to from the currentNode the car is on
         WorldSpatial.Direction direction = scanForLava(this.source);
 

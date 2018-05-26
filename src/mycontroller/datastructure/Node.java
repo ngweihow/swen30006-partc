@@ -20,6 +20,8 @@ public class Node {
     private Node northNode;
     private Node southNode;
 
+    private boolean isVisited;
+
     private static final int DEFAULT_WEIGHT = 10;
 
     public Node(Coordinate coord) {
@@ -27,6 +29,7 @@ public class Node {
         this.x = coord.x;
         this.y = coord.y;
         this.weight = DEFAULT_WEIGHT;
+        this.isVisited = false;
     }
 
     /**
@@ -136,5 +139,13 @@ public class Node {
 
     public void setSouthNode(Node southNode) {
         this.southNode = southNode;
+    }
+
+    public boolean isVisited() {
+        return isVisited;
+    }
+
+    public void setVisited(boolean visited) {
+        isVisited = visited;
     }
 }

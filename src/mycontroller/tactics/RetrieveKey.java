@@ -84,7 +84,7 @@ public class RetrieveKey implements ITraversalTactic {
      * @return Node for the strategy to know where to travel to
      */
     @Override
-    public Node travel() {
+    public Node travel(HashMap<Coordinate, MapTile> currentView ) {
 
         // Set all the Node references
         Node northernNode = scanDirection(WorldSpatial.Direction.NORTH, RANGE, this.source);

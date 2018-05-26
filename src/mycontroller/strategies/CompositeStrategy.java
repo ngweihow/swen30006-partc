@@ -5,6 +5,7 @@ import mycontroller.datastructure.Graph;
 import mycontroller.datastructure.Node;
 import tiles.MapTile;
 
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.Stack;
@@ -12,7 +13,7 @@ import java.util.Stack;
 public class CompositeStrategy implements ITraversalStrategy {
 
     // ArrayList of the combination of strategies used
-    ArrayList<ITraversalStrategy> strategiesOrder = new ArrayList<>();
+    ArrayList<ITraversalStrategy> strategiesOrder;
 
 
     public CompositeStrategy(ArrayList<ITraversalStrategy> strategiesOrder) {
@@ -26,7 +27,14 @@ public class CompositeStrategy implements ITraversalStrategy {
      */
     @Override
     public Stack<Node> findDestination(Map<Node, MapTile> graph, MyAIController controller) {
-        return null;
+        Stack<Node> solution = null;
+
+        for (ITraversalStrategy strategy : strategiesOrder) {
+            solution = strategy.findDestination(graph, controller);
+
+        }
+
+        return solution;
     }
 
     // Getters and Setters

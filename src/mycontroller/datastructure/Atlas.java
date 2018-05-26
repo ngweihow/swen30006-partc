@@ -6,6 +6,7 @@ import mycontroller.strategies.*;
 import mycontroller.tactics.Driver;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Stack;
 
 public class Atlas {
@@ -19,7 +20,6 @@ public class Atlas {
     // Strategies to be used for Composite Strategy
     private static final String EXPEDITION = "Expedition";
     private static final String CONQUEST = "Conquest";
-    private static final String SWEEP = "Sweep";
     private static final String EXIT = "Exit";
 
     private Graph graph;
@@ -27,11 +27,7 @@ public class Atlas {
 
     // Static Block to populate the arraylist of strategystrings
     static {
-        strategyList = new ArrayList<>();
-        strategyList.add(EXPEDITION);
-        strategyList.add(CONQUEST);
-        strategyList.add(SWEEP);
-        strategyList.add(EXIT);
+        strategyList = new ArrayList<>(Arrays.asList(EXIT));
     }
 
     // Constructor
@@ -55,8 +51,8 @@ public class Atlas {
         // Initialise the composite strategy used
         strategyUsed = new CompositeStrategy(compositionList);
 
-        this.strategyExit = new Exit(graph.getGraphNodes());
-        Stack<Node> solution = strategyExit.findDestination(graph.getGraphNodes(), controller);
+        //this.strategyExit = new Exit(graph.getGraphNodes());
+        Stack<Node> solution = strategyUsed.findDestination(graph.getGraphNodes(), controller);
 
         // Get Driver
         this.driver = new Driver(controller, solution);

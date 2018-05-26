@@ -31,12 +31,6 @@ public class StrategyFactory {
             return new Conquest(graph);
         }
 
-        // Sweep
-        // Traverses Map to collect remaining keys only
-        if(strategyName.equals("Sweep")) {
-            return new Sweep(graph);
-        }
-
         // Exit
         // Attempt to traverse to the exit of the map
         if(strategyName.equals("Exit")) {

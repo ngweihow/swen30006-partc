@@ -101,7 +101,7 @@ public class Heal implements ITraversalTactic {
      * @return Next node to travel to
      */
     @Override
-    public Node travel() {
+    public Node travel(HashMap<Coordinate, MapTile> currentView) {
 
         // Seek which direction to travel to from the currentNode the car is on
         WorldSpatial.Direction direction = scanForHeal(this.source);
