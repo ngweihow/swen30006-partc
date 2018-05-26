@@ -36,16 +36,6 @@ public class MyAIController extends CarController {
 
     }
 
-    public void printPath(Stack<Node> solution) {
-        Stack<Node> newStack = new Stack<>();
-        newStack.addAll(solution);
-
-        while (!newStack.isEmpty()) {
-            Node current = newStack.pop();
-            System.out.format("%d,%d\n", current.getX(), current.getY());
-        }
-    }
-
     @Override
     public void update(float delta) {
         driver.driveCar(delta);
