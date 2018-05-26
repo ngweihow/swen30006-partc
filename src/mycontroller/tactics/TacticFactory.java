@@ -16,7 +16,7 @@ public class TacticFactory {
      * @param tacticName
      * @return a new Tactic object
      */
-    public ITraversalTactic createTactic(String tacticName, Node currentNode, Map<Node, MapTile> graph, int currentKey) {
+    public ITraversalTactic createTactic(String tacticName, int currentKey) {
         // Return null if invalid output
         if(tacticName == null) {
             return null;
@@ -24,17 +24,17 @@ public class TacticFactory {
 
         // Heal tactic
         if(tacticName.equals("Heal")) {
-            return new Heal(currentNode);
+            return new Heal();
         }
 
         // RetrieveKey tactic
         else if(tacticName.equals("RetrieveKey")) {
-            return new RetrieveKey(currentNode, graph, currentKey);
+            return new RetrieveKey(currentKey);
         }
 
         // AvoidLava Tactic
         else if(tacticName.equals("AvoidLava")) {
-            return new AvoidLava(currentNode);
+            return new AvoidLava();
         }
 
         return null;
