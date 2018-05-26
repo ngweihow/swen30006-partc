@@ -11,6 +11,10 @@ import java.util.*;
 
 public class AvoidLava implements ITraversalTactic {
 
+    public AvoidLava() {
+
+    }
+
     /**
      * Returns the next node where to travel to
      * @return Next node to travel to

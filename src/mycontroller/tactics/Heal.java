@@ -10,6 +10,10 @@ import world.WorldSpatial;
 import java.util.*;
 
 public class Heal implements ITraversalTactic {
+
+    public Heal() {
+
+    }
     /**
      * Returns the next node where to travel to
      * @return Next node to travel to

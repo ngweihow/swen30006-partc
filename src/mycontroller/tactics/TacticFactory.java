@@ -5,6 +5,10 @@ public class TacticFactory {
     private static final String RETRIEVE_KEY = "RetrieveKey";
     private static final String AVOID_LAVA = "AvoidLava";
 
+    public TacticFactory() {
+
+    }
+
     /**
      * Method to create tactics used for immediate traversal
      * @param tacticName

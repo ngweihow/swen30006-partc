@@ -7,6 +7,10 @@ import java.util.Map;
 
 public class StrategyFactory {
 
+    public StrategyFactory() {
+
+    }
+
     /**
      * Method to create new strategies without the need to call respective constructors
      * @param strategyName

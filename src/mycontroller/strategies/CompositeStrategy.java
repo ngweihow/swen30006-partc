@@ -1,11 +1,9 @@
 package mycontroller.strategies;
 
 import mycontroller.MyAIController;
-import mycontroller.datastructure.Graph;
 import mycontroller.datastructure.Node;
 import tiles.MapTile;
 
-import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.Stack;
