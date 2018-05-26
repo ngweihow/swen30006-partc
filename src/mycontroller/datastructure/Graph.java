@@ -23,8 +23,6 @@ public class Graph {
     private static final String LAVA = "lava";
     private static final String HEALTH = "health";
 
-
-
     // Graph which contains contents of map
     private static Map<Node, MapTile> graph;
 

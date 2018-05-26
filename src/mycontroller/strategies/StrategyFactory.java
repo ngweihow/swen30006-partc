@@ -6,18 +6,13 @@ import mycontroller.datastructure.Node;
 import java.util.Map;
 
 public class StrategyFactory {
-    private Map<Node, MapTile> graph;
-
-    public StrategyFactory(Map<Node, MapTile> graph) {
-        this.graph = graph;
-    }
 
     /**
      * Method to create new strategies without the need to call respective constructors
      * @param strategyName
      * @return
      */
-    public ITraversalStrategy createStrategy(String strategyName) {
+    public ITraversalStrategy createStrategy(Map<Node, MapTile> graph, String strategyName) {
 
         // Return null if invalid output
         if(strategyName == null) {
