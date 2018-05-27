@@ -1,3 +1,7 @@
+/*
+ * Group Number: 111
+ * Armaan Dhaliwal-McLeod (837674), Wei How Ng (828472), Haohai Liu (830876)
+ */
 package mycontroller.datastructure;
 
 import utilities.*;

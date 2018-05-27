@@ -1,3 +1,7 @@
+/*
+ * Group Number: 111
+ * Armaan Dhaliwal-McLeod (837674), Wei How Ng (828472), Haohai Liu (830876)
+ */
 package mycontroller.strategies;
 
 import mycontroller.MyAIController;
@@ -11,7 +15,7 @@ import java.util.Stack;
 public class CompositeStrategy implements ITraversalStrategy {
 
     // ArrayList of the combination of strategies used
-    ArrayList<ITraversalStrategy> strategiesOrder;
+    private ArrayList<ITraversalStrategy> strategiesOrder;
 
 
     public CompositeStrategy(ArrayList<ITraversalStrategy> strategiesOrder) {
