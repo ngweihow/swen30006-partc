@@ -160,14 +160,6 @@ public class Driver {
 
     }
 
-    private void setTurnRight(boolean newTurn) {
-        this.isTurningRight = newTurn;
-    }
-
-    private void setTurnLeft(boolean newTurn) {
-        this.isTurningLeft = newTurn;
-    }
-
     /**
      * Gets relative direction of car
      * @param orientation current orientation of vehicle
@@ -480,4 +472,12 @@ public class Driver {
         return false;
     }
 
+
+    private void setTurnRight(boolean newTurn) {
+        this.isTurningRight = newTurn;
+    }
+
+    private void setTurnLeft(boolean newTurn) {
+        this.isTurningLeft = newTurn;
+    }
 }

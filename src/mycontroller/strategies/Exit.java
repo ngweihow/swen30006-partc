@@ -27,7 +27,7 @@ public class Exit implements ITraversalStrategy {
 
     private static final String AVOID_LAVA = "AvoidLava";
 
-
+    // Initialising the arraylist of tactics
     static {
         tacticsList =  new ArrayList<>(Arrays.asList(AVOID_LAVA));
     }

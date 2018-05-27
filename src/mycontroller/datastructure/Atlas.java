@@ -19,16 +19,16 @@ public class Atlas {
     private StrategyFactory strategyFactory;
     private static ArrayList<String> strategyList;
     private ArrayList<ITraversalStrategy> compositionList;
-    private ITraversalStrategy strategyExit ;
+
 
     // Strategies to be used for Composite Strategy
     private static final String EXPEDITION = "Expedition";
     private static final String CONQUEST = "Conquest";
     private static final String EXIT = "Exit";
 
+    // Graph and driver and key to be looked for next
     private Graph graph;
     private Driver driver;
-
     private static int key;
 
     // Static Block to populate the arraylist of strategystrings
@@ -65,6 +65,7 @@ public class Atlas {
         this.driver = new Driver(controller, solution);
     }
 
+    // Return driver to MyAIController
     public Driver getDriver() {
         return driver;
     }

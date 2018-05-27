@@ -14,9 +14,14 @@ public class MyAIController extends CarController {
     public MyAIController(Car car) {
         super(car);
 
+        // Initialise Atlas
         this.atlas = new Atlas(this);
     }
 
+    /**
+     * Overriden update method to update the rendering and driving
+     * @param delta Value to work with the physics of the car
+     */
     @Override
     public void update(float delta) {
         atlas.getDriver().driveCar(delta);

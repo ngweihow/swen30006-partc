@@ -68,6 +68,11 @@ public class Node {
 
     }
 
+    /**
+     * Check the current position of the other node
+     * @param other The reference to the other node to be checked
+     * @return Whether the other node is in the specified coordinate
+     */
     public boolean checkPosition(Node other) {
         return x == other.getX() && y == other.getY();
     }

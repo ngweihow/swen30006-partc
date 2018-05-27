@@ -37,7 +37,10 @@ public class Graph {
         LAVA_TRAP = World.MAP_HEIGHT * World.MAP_WIDTH;
     }
 
-    // Singleton constructor (Package private)
+    /**
+     * Singleton constructor (Package private)
+     * @return The only instantiation of the Graph class in the package
+     */
     Graph() {
 
         // Variable for the original map from getMap
