@@ -25,9 +25,12 @@ public class Atlas {
     private Graph graph;
     private Driver driver;
 
+    private static int key;
+
     // Static Block to populate the arraylist of strategystrings
     static {
         strategyList = new ArrayList<>(Arrays.asList(EXIT));
+        key = 0;
     }
 
     // Constructor
@@ -45,7 +48,7 @@ public class Atlas {
         compositionList = new ArrayList<>();
         for(String currentStrategy: strategyList) {
             // Call the Factory method to generate the composition
-            compositionList.add(strategyFactory.createStrategy(graph.getGraphNodes(), currentStrategy));
+            compositionList.add(strategyFactory.createStrategy(graph.getGraphNodes(), currentStrategy, key));
         }
 
         // Initialise the composite strategy used

@@ -18,6 +18,7 @@ public class Conquest implements ITraversalStrategy {
 
     public Conquest(Map<Node, MapTile> graph) {
         this.graph = graph;
+        this.tactics = new ArrayList<>();
     }
 
     /**

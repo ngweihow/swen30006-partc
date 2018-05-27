@@ -16,7 +16,7 @@ public class StrategyFactory {
      * @param strategyName
      * @return
      */
-    public ITraversalStrategy createStrategy(Map<Node, MapTile> graph, String strategyName) {
+    public ITraversalStrategy createStrategy(Map<Node, MapTile> graph, String strategyName, int key) {
 
         // Return null if invalid output
         if(strategyName == null) {
@@ -38,7 +38,7 @@ public class StrategyFactory {
         // Exit
         // Attempt to traverse to the exit of the map
         if(strategyName.equals("Exit")) {
-            return new Exit(graph);
+            return new Exit(graph, key);
         }
 
         return null;

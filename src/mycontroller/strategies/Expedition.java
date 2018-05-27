@@ -24,6 +24,7 @@ public class Expedition implements ITraversalStrategy {
 
     public Expedition(Map<Node, MapTile> graph) {
         this.graph = graph;
+        this.tactics = new ArrayList<>();
     }
 
 
